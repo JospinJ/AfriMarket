@@ -1,0 +1,46 @@
+---
+description: Design system « Afrique moderne, sobre » — tokens, couleurs, typographie, motifs, règles d'application.
+alwaysApply: true
+---
+
+# Design system « Afrique moderne » (INVARIANT #4)
+
+Objectif : **African-inspired, not traditional overload.** Positionnement : *« Le marché numérique de l'Afrique moderne. »* Le style africain est **suggestif**, jamais décoratif ni folklorique.
+
+## Philosophie
+
+Chaque écran raconte une histoire ; chaque section transmet une émotion (fierté, innovation, entrepreneuriat, confiance, prospérité). Jamais d'esthétique générique occidentale. Jamais misérabilisme ni clichés humanitaires.
+
+## Palette (tokens — `app/globals.css`)
+
+| Famille | Tokens | Usage |
+|---|---|---|
+| Terre | `--ocre`, `--terracotta`, `--sand`, `--noble-brown`, `--copper` | surfaces chaudes, séparateurs |
+| Nature | `--green-savanna`, `--green-deep`, `--green-forest`, `--green-agri` | confiance, CTA vendeur/livreur |
+| Soleil | `--sunset`, `--gold`, `--amber` | accents premium, promos |
+| Prestige | `--night`, `--bronze`, `--ivory` | dashboards, footer, conversion business |
+| Surfaces | `--surface-light`, `--surface-white` | zones achat/paiement (clarté maximale) |
+
+Règle : **fond sombre `--night`** pour footer, CTA business, dashboards ; **fond clair** pour grille produit, PDP, panier, checkout.
+
+## Motifs & textures
+
+Classes : `.bg-motif-wax`, `.bg-motif-kente`, `.bg-motif-kuba`, `.bg-motif-bogolan`, `.bg-motif-ndop`, `.bg-motif-adinkra` — **arrière-plan uniquement**, **opacité 5–10 %**, jamais au-dessus de texte.
+
+**Interdit** : folklorique, caricatural, surchargé.
+
+## Typographie
+
+Inter (corps) + Sora (titres) via `next/font`. Titres = ambition, leadership, confiance.
+
+## Composants clés
+
+- `HomeHero` — message : *« Le marché numérique qui connecte l'Afrique. »*
+- `MarketingLanding` — pages vendeur, livreur, premium, publicité (style SaaS + identité africaine)
+- `SuccessCelebration` — célébration discrète (KYC, 1ère vente, 1er achat, retrait)
+- `AfricaRegionFilter` — analytics par sous-région africaine
+- `KpiCard` — cartes premium avec motifs subtils
+
+## Micro-animations
+
+`animate-fade-up`, `animate-savanna-drift`, `animate-coastal-wave`, `animate-sunrise-glow` — fluides, premium ; respecter `prefers-reduced-motion`.

@@ -1,0 +1,128 @@
+---
+description: Roadmap sprints, matrice dépendances, DoR, tests, risques et statut modules — pilotage exécution AfriMarket Hub.
+alwaysApply: true
+---
+
+# Plan d'exécution AfriMarket Hub
+
+> Règle maître de pilotage. Complète le prompt maître sans le remplacer. Mettre à jour le tableau statut à chaque fin de sprint.
+
+## Règle sprint
+
+Un sprint ne démarre que si le socle dont il dépend est en statut **GO**. Ne jamais injecter les 17 fiches modules simultanément — une fiche à la fois.
+
+## Roadmap (Sprints 0–8)
+
+| Sprint | Contenu | Livrable clé |
+|--------|---------|--------------|
+| 0 | Fondations | Next.js, tokens, types, mocks, RBAC, composants partagés, `/_kitchen-sink` |
+| 1 | Nav + Home | Module 01, 02, recherche/filtres |
+| 2 | Achat cœur | Module 03 PDP, 04 Cart, 07 Store Front |
+| 3 | Conversion | Module 05 Checkout, 06 Tracking (mock delivery-zones) |
+| 4 | Confiance | Module 09 Reviews, 08 Chat, 10 Litiges |
+| 5 | Dashboards | Module 11 — 5 rôles RBAC |
+| 6 | Monétisation | Module 12 Premium, 13 Ads, 14 Ads Analytics |
+| 7 | Logistique | Module 15 Delivery Zones, 16 Security Center |
+| 8 | Légal + QA | Module 17 Legal, passe sécurité/perf/a11y, doc finale |
+
+## Matrice dépendances (anti-duplication)
+
+| Module | Dépend de | Composants partagés |
+|--------|-----------|---------------------|
+| 1 Navbar | Socle | Badge, SearchBar, CartMini |
+| 2 Home | 1, Socle | ProductCard, PriceBlock, PurchaseModeChip |
+| 3 PDP | 1, 2, Socle | PriceBlock, PurchaseModeChip, StarRating, SellerBadge |
+| 4 Cart | 3, Socle | PriceBlock, QuantityStepper |
+| 5 Checkout | 4, 15*, Socle | MobileMoneySelector, AddressForm, OrderSummary, OtpInput |
+| 6 Tracking | 5, Socle | StatusTimeline, GeoMap, DriverCard |
+| 7 Store Front | 2, 3, Socle | ProductCard, FollowButton |
+| 8 Chat | 1, 5, 6, 7, Socle | RoleBadge, ContextPanel |
+| 9 Reviews | 3, 5, 6, 7, Socle | StarRating, VerifiedBuyerBadge |
+| 10 Litiges | 5, 6, 8, 9, Socle | StatusTimeline, EvidenceUploader, Chat |
+| 11 Dashboards | 1, RBAC, Socle | KpiCard, DataTable, Charts, RoleGuard, Sidebar |
+| 12 Premium | 11, Socle | MobileMoneySelector, ComparisonTable |
+| 13 Ads | 11, 12, Socle | CampaignForm, TargetingPanel |
+| 14 Ads Analytics | 13, 11, Socle | KpiCard, Charts, GeoMap |
+| 15 Delivery Zones | 11, Socle | GeoMap, DataTable |
+| 16 Security | 11, RBAC, Socle | SecurityScoreGauge, OtpInput, DeviceCard |
+| 17 Legal | 1, Socle | Accordion, TableOfContents |
+
+*Module 15 mocké en Sprint 0 pour Checkout ; branché en Sprint 7.
+
+## Definition of Ready (DoR)
+
+- [ ] Fiche module identifiée et lue
+- [ ] Dépendances amont GO ou mockées
+- [ ] Critères d'acceptation connus
+- [ ] Composants partagés identifiés (matrice ci-dessus)
+- [ ] Paquet de contexte reçu (fiche seule + règles pertinentes)
+
+## Méthode 7 étapes (par tâche atomique)
+
+Analyse → Conception → Planification → Implémentation → Vérification → Optimisation → Validation (résumé + hypothèses + TODO restants).
+
+## Checklist fusion (Agent 0)
+
+- [ ] 17 modules couverts ou planifiés
+- [ ] Triptyque identique Home/PDP/Cart/Checkout/Ads
+- [ ] RBAC UI + routes sur dashboards, chat, litiges, ads, security
+- [ ] Aucune duplication composant partagé
+- [ ] Contraintes Afrique transversales
+- [ ] GO Agent 9 par module ; `// TODO API` signés
+
+## Stratégie tests
+
+- **Unitaires** (Vitest + Testing Library) : composants partagés, stores, helpers
+- **Intégration** : panier multi-vendeurs → checkout → tracking ; litige complet
+- **RBAC** : UI masquée + route bloquée par rôle non autorisé
+- **Invariants** : prix toujours avec mode ; Product mock = 3 offres
+- **Priorité** : composants partagés > checkout > RBAC > reste
+
+## Registre risques R1–R10
+
+| # | Risque | Mitigation |
+|---|--------|------------|
+| R1 | Duplication Mobile Money | `MobileMoneySelector` unique Sprint 0 |
+| R2 | Prix sans mode | PriceBlock + PurchaseModeChip couplés + tests |
+| R3 | Contournement RBAC | middleware + RoleGuard + tests |
+| R4 | UI trop folklorique | motifs ≤10 % ; checkout neutre |
+| R5 | Perfs mobile | dynamic(), LCP <2,5s |
+| R6 | Dérive périmètre | hors-scope §00-contexte |
+| R7 | Faux backend prêt | `// TODO API` systématiques |
+| R8 | Types incohérents | glossaire = source de vérité |
+| R9 | Fuite données sensibles | pas de secret ; OTP rate-limit |
+| R10 | GPS intermittent | fallback SMS tracking |
+
+## Template ADR
+
+```
+ADR-[n] — [titre]
+Date : YYYY-MM-DD | Contexte | Options | Décision | Justification | Conséquences | Statut
+```
+
+Consigner dans `docs/decisions/`.
+
+## Statut modules (à maintenir)
+
+| # | Module | Statut |
+|---|--------|--------|
+| 0 | Socle | GO |
+| 1 | Navbar/Footer | GO |
+| 2 | Home | GO |
+| 3 | PDP | GO |
+| 4 | Cart | GO |
+| 5 | Checkout | GO |
+| 6 | Tracking | GO |
+| 7 | Store Front | GO |
+| 8 | Chat | GO |
+| 9 | Reviews | GO |
+| 10 | Litiges | GO |
+| 11 | Dashboards | GO |
+| 12 | Premium | GO |
+| 13 | Ads Manager | GO |
+| 14 | Ads Analytics | GO |
+| 15 | Delivery Zones | GO |
+| 16 | Security Center | GO |
+| 17 | Legal | GO |
+
+Statuts : `À faire` | `En cours` | `GO` | `NO-GO`

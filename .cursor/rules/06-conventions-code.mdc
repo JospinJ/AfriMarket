@@ -1,0 +1,55 @@
+---
+description: Conventions de code — nommage, structure des fichiers, patterns Zustand, anti-duplication.
+globs: **/*.{ts,tsx}
+alwaysApply: true
+---
+
+# Conventions de code
+
+## Nommage
+
+- **Composants** : `PascalCase` (fichier `PascalCase.tsx`). Un composant par fichier ; export par défaut pour les composants de page, export nommé pour les composants partagés.
+- **Hooks** : `useCamelCase`. **Stores Zustand** : `useXxxStore`.
+- **Types/Interfaces** : `PascalCase`, sans préfixe `I`. **Enums de chaîne** : union de littéraux (`type Role = "admin" | ...`) plutôt qu'`enum`.
+- **Fonctions/variables** : `camelCase`. **Constantes** : `UPPER_SNAKE_CASE` dans `lib/constants/`.
+- **Fichiers utilitaires** : `kebab-case.ts`. Dossiers : `kebab-case`.
+- **Booléens** : préfixe `is/has/can/should` (`isLoading`, `canCreateProduct`).
+
+## Structure d'un composant
+
+1. Types/props en haut. Props typées via `interface XxxProps`. Valeurs par défaut fournies (composant utilisable sans props requises quand c'est raisonnable).
+2. `"use client"` seulement si nécessaire (état, effets, handlers, store).
+3. Early returns pour loading/empty/error.
+4. JSX lisible, classes Tailwind ordonnées (layout → spacing → couleur → état).
+
+## Zustand
+
+- Un store par domaine (`useCartStore`, `usePurchaseModeStore`, `useUiStore`, `useFiltersStore`).
+- **Sélecteurs** pour éviter les re-renders : `useCartStore(s => s.items.length)` plutôt que tout le store.
+- Actions dans le store (pas de mutation d'état hors actions). État sérialisable.
+- Pas de logique serveur dans un store client.
+
+## Format TODO API
+
+```
+// TODO API: POST /checkout/validate → { addressId, items[] } → { valid: boolean, errors[] }
+// TODO AI: recommandations produits similaires pour productId
+```
+
+## Anti-duplication (règle stricte)
+
+Avant de créer un composant, vérifier `components/shared/` et la matrice dans `08-plan-execution.mdc`. Composants partagés attendus (à réutiliser, jamais recréer) :
+`PriceBlock`, `PurchaseModeChip`, `ProductCard`, `Badge` (dynamique), `StarRating`, `SellerBadge`, `VerifiedBuyerBadge`, `MobileMoneySelector`, `OtpInput`, `AddressForm`, `OrderSummary`, `QuantityStepper` (MOQ), `StatusTimeline`, `KpiCard`, `DataTable`, `Charts`, `GeoMap`, `RoleGuard`, `Sidebar`, `Accordion`, `SkeletonLoaders`, `FollowButton`.
+
+## Qualité
+
+- **Zéro `any`**, zéro `@ts-ignore`. Typer les payloads d'API même mockés.
+- Fonctions courtes, une responsabilité. Pas de composant > ~200 lignes : extraire.
+- Commentaires utiles seulement (le « pourquoi », pas le « quoi »). Marquer les intégrations manquantes : `// TODO API: METHOD /route → { payload } → { réponse }` et `// TODO AI: description`.
+- Gestion d'erreur explicite ; jamais de `catch` vide.
+- Formattage : Prettier + ESLint (config Next + TS strict) ; imports triés, pas d'import inutilisé.
+
+## Accessibilité & i18n-ready
+
+- Textes visibles centralisés (pas de chaîne magique dispersée) pour préparer FR/EN.
+- `alt` significatif sur les images de contenu ; `aria-label` sur les actions icône-seule.

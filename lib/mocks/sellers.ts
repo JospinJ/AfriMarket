@@ -1,0 +1,177 @@
+import { IMAGES } from "@/lib/constants/images";
+import type { Seller } from "@/types/seller";
+import type { User } from "@/types/user";
+
+export const mockUsers: User[] = [
+  {
+    id: "user-buyer-1",
+    role: "buyer",
+    firstName: "Aïcha",
+    phone: "677123456",
+    country: "CM",
+    city: "Douala",
+    createdAt: "2025-01-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-1",
+    role: "seller",
+    firstName: "Emmanuel",
+    phone: "699876543",
+    country: "CM",
+    city: "Yaoundé",
+    sellerTier: "gold",
+    kycStatus: "verified",
+    createdAt: "2024-06-01T00:00:00Z",
+  },
+  {
+    id: "user-driver-1",
+    role: "driver",
+    firstName: "Ibrahim",
+    phone: "655111222",
+    country: "CM",
+    city: "Douala",
+    kycStatus: "verified",
+    createdAt: "2024-08-01T00:00:00Z",
+  },
+  {
+    id: "user-admin-1",
+    role: "admin",
+    firstName: "Sandrine",
+    phone: "670000001",
+    country: "CM",
+    isSupport: true,
+    createdAt: "2024-01-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-2",
+    role: "seller",
+    firstName: "Claire",
+    phone: "677222333",
+    country: "CM",
+    city: "Douala",
+    sellerTier: "elite",
+    kycStatus: "verified",
+    createdAt: "2024-03-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-3",
+    role: "seller",
+    firstName: "Marc",
+    phone: "677555666",
+    country: "CM",
+    city: "Bafoussam",
+    sellerTier: "basic",
+    kycStatus: "pending",
+    createdAt: "2025-03-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-4",
+    role: "seller",
+    firstName: "Ngozi",
+    phone: "699111222",
+    country: "CM",
+    city: "Douala",
+    sellerTier: "gold",
+    kycStatus: "verified",
+    createdAt: "2024-04-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-5",
+    role: "seller",
+    firstName: "Patrick",
+    phone: "677333444",
+    country: "CM",
+    city: "Yaoundé",
+    sellerTier: "elite",
+    kycStatus: "verified",
+    createdAt: "2023-08-15T00:00:00Z",
+  },
+  {
+    id: "user-seller-6",
+    role: "seller",
+    firstName: "Amélie",
+    phone: "655777888",
+    country: "CM",
+    city: "Douala",
+    sellerTier: "gold",
+    kycStatus: "verified",
+    createdAt: "2024-11-01T00:00:00Z",
+  },
+  {
+    id: "user-seller-7",
+    role: "seller",
+    firstName: "Joseph",
+    phone: "670999000",
+    country: "CM",
+    city: "Bafoussam",
+    sellerTier: "elite",
+    kycStatus: "verified",
+    createdAt: "2023-05-20T00:00:00Z",
+  },
+];
+
+import { specialtySellers } from "@/lib/mocks/specialty-stores";
+import {
+  getRuntimeSellerById,
+  getRuntimeSellerBySlug,
+} from "@/lib/catalog/runtime";
+
+export const mockSellers: Seller[] = [
+  {
+    id: "seller-1",
+    userId: "user-seller-1",
+    storeName: "Tech Yaoundé Pro",
+    storeSlug: "tech-yaounde-pro",
+    logoUrl: IMAGES.sellers.seller1,
+    bannerUrl: IMAGES.sellers.banner1,
+    tier: "gold",
+    kycStatus: "verified",
+    rating: { average: 4.7, count: 234 },
+    responseRatePct: 98,
+    responseTimeMins: 15,
+    followersCount: 1250,
+    deliveredOrders: 890,
+    country: "CM",
+    city: "Yaoundé",
+    badges: ["verified", "premium", "top_rated"],
+  },
+  {
+    id: "seller-2",
+    userId: "user-seller-2",
+    storeName: "Douala Fashion Hub",
+    storeSlug: "douala-fashion-hub",
+    logoUrl: IMAGES.sellers.seller2,
+    bannerUrl: IMAGES.sellers.banner2,
+    tier: "elite",
+    kycStatus: "verified",
+    rating: { average: 4.9, count: 567 },
+    responseRatePct: 99,
+    responseTimeMins: 10,
+    followersCount: 3400,
+    deliveredOrders: 2100,
+    country: "CM",
+    city: "Douala",
+    badges: ["verified", "elite", "local"],
+  },
+  {
+    id: "seller-3",
+    userId: "user-seller-3",
+    storeName: "Import Direct CM",
+    storeSlug: "import-direct-cm",
+    tier: "basic",
+    kycStatus: "pending",
+    rating: { average: 4.2, count: 89 },
+    country: "CM",
+    city: "Bafoussam",
+    badges: ["local"],
+  },
+  ...specialtySellers,
+];
+
+export function getSellerById(id: string): Seller | undefined {
+  return getRuntimeSellerById(id) ?? mockSellers.find((s) => s.id === id);
+}
+
+export function getSellerBySlug(slug: string): Seller | undefined {
+  return getRuntimeSellerBySlug(slug) ?? mockSellers.find((s) => s.storeSlug === slug);
+}

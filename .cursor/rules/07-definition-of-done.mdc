@@ -1,0 +1,51 @@
+---
+description: Definition of Done et checklist QA à valider avant de considérer un module terminé.
+alwaysApply: false
+---
+
+# Definition of Done — checklist de livraison d'un module
+
+Un module n'est « terminé » que si **toutes** ces cases sont cochées. Applique cette checklist avant d'annoncer qu'un module est prêt.
+
+## Definition of Ready (DoR) — avant de démarrer
+
+- [ ] Fiche module identifiée et lue
+- [ ] Dépendances amont GO ou mockées
+- [ ] Critères d'acceptation connus
+- [ ] Composants partagés identifiés (`08-plan-execution.mdc`)
+- [ ] Contexte local reçu (fiche seule, pas les 17)
+
+## Fonctionnel
+
+- [ ] Tous les critères d'acceptation de la fiche module passent.
+- [ ] Tous les cas limites imposés sont gérés : stock = 0, MOQ non atteint, panier multi-vendeurs, OTP expiré/retry, perte de connexion (fallback SMS), coupon expiré, zone non couverte.
+
+## Invariants (bloquants)
+
+- [ ] **Triptyque** : tout prix affiché a son mode ; chaque `Product` a 3 offres.
+- [ ] **RBAC** : UI conditionnée **et** route protégée ; testé pour un rôle non autorisé.
+- [ ] **Afrique** : Mobile Money en premier, WhatsApp-first, FCFA via `formatFCFA`, mobile-first, fallback SMS.
+- [ ] **Design sobre** : motifs ≤ 10 %, zones de paiement neutres, contrastes AA.
+- [ ] **Stack** : Next 14 App Router, TS strict, Zustand, composants partagés réutilisés (pas de duplication).
+
+## Technique
+
+- [ ] Build TypeScript strict sans erreur ; zéro `any` / `@ts-ignore`.
+- [ ] Server/Client Components correctement répartis ; `"use client"` minimal.
+- [ ] États UX présents : loading (skeleton), empty, error (retry), success.
+- [ ] Responsive vérifié à 360 / 768 / 1024 / 1280.
+- [ ] `next/image` + lazy loading ; `dynamic()` sur les composants lourds.
+- [ ] `// TODO API` / `// TODO AI` posés avec signature là où le backend/IA manque.
+
+## Qualité & doc
+
+- [ ] Accessibilité : `aria-label`, focus clavier, cibles ≥ 44px.
+- [ ] Tests : unitaires (composants/stores/helpers), intégration (parcours), RBAC, invariants.
+- [ ] Rapport sécurité sans faille bloquante ; budget performance respecté.
+- [ ] README module à jour (composants, stores, TODO restants) — ni plus, ni moins que le livré.
+
+## Verdict
+
+- [ ] **GO** prononçable (aucun invariant violé, aucune non-conformité bloquante)
+- [ ] Sinon → **NO-GO** : renvoi ciblé à l'agent responsable avec liste précise des correctifs ; re-test après correction
+- [ ] Mettre à jour le statut module dans `08-plan-execution.mdc`

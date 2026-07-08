@@ -1,0 +1,65 @@
+---
+description: Modèle RBAC (4 rôles) et sa mise en œuvre technique (guards, routes, UI) pour AfriMarket Hub.
+alwaysApply: true
+---
+
+# RBAC — 4 rôles & permissions (INVARIANT #2)
+
+Aucune UI ni aucune route ne contourne cette matrice. La permission se vérifie **à la fois** côté UI (masquer/désactiver) **et** côté route/serveur (bloquer réellement).
+
+## Rôles
+
+`type Role = "admin" | "seller" | "driver" | "buyer";`
+Le vendeur a un niveau d'abonnement : `type SellerTier = "basic" | "gold" | "elite";` (voir Premium). « Support » est une capacité de l'admin (`admin` avec permission de modération).
+
+## Matrice de permissions (source de vérité)
+
+| Action | Admin | Vendeur | Livreur | Acheteur |
+|---|:---:|:---:|:---:|:---:|
+| Analytics complètes | ✔ | Premium (gold/elite) uniquement | Limité (perf. perso) | ❌ |
+| Gérer les utilisateurs | ✔ | ❌ | ❌ | ❌ |
+| Créer un produit | ❌ | ✔ | ❌ | ❌ |
+| Accepter une livraison | ❌ | ❌ | ✔ | ❌ |
+| Créer une campagne Ads | ❌ | ✔ (limité si `basic`) | ❌ | ❌ |
+| Modérer litiges / avis | ✔ (support) | ❌ | ❌ | ❌ |
+
+## Actions `can()` typées
+
+```ts
+type PermissionAction =
+  | "viewFullAnalytics" | "manageUsers" | "createProduct"
+  | "acceptDelivery" | "createCampaign" | "moderateDispute";
+```
+
+- `viewFullAnalytics` : admin full ; vendeur gold/elite ; livreur limité perso ; acheteur ❌
+- `manageUsers` : admin seul
+- `createProduct` : vendeur seul
+- `acceptDelivery` : livreur seul
+- `createCampaign` : vendeur (limité si basic)
+- `moderateDispute` : admin/support seul
+
+## Mapping routes dashboard
+
+| Rôle | Préfixe route | Home redirect |
+|------|---------------|---------------|
+| admin | `/admin` | `/admin` |
+| seller | `/seller` | `/seller` |
+| driver | `/driver` | `/driver` |
+| buyer | `/buyer` | `/buyer` |
+| support | `/support` | `/support` |
+
+## Mise en œuvre imposée
+
+- **Middleware** (`middleware.ts`) : protège les segments `(dashboard)/admin`, `/seller`, `/driver`, `/buyer`, `/support`. Redirige un rôle non autorisé vers sa home ou une page 403.
+- **`RoleGuard`** (composant partagé) : `<RoleGuard allow={["seller"]} minTier="gold">…</RoleGuard>` — masque/rend l'UId conditionnellement. Ne jamais se reposer sur le seul masquage UI pour la sécurité.
+- **`useRole()`** (hook) : expose `{ role, tier, can(action) }`. Toute condition d'affichage sensible passe par `can(...)`.
+- **Sidebar des dashboards** : générée à partir des permissions du rôle courant (pas de lien vers une page interdite).
+- **Route handlers / services** : revalident la permission côté serveur avant toute action (création produit, acceptation livraison, création campagne, modération). `// TODO API` conserve cette vérification en commentaire de signature.
+
+## Règles de test (obligatoires)
+
+Pour chaque action sensible, un test vérifie qu'un rôle non autorisé :
+1. ne voit pas l'entrée d'UI, **et**
+2. reçoit un refus s'il appelle la route directement.
+
+Ne jamais afficher des « analytics complètes » à un vendeur `basic`, ni une action « accepter livraison » à un acheteur, ni « gérer utilisateurs » à quiconque n'est pas admin.

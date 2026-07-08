@@ -1,0 +1,47 @@
+---
+description: Contraintes Afrique — Mobile Money, WhatsApp-first, FCFA, mobile-first, low-bandwidth, fallback SMS.
+alwaysApply: true
+---
+
+# Contraintes Afrique (INVARIANT #3)
+
+Ces contraintes sont transversales à tous les modules qui touchent au paiement, à la communication, à la livraison ou à l'affichage de prix.
+
+## Paiement — Mobile Money d'abord
+
+- Sur **tout** module de paiement (Checkout, Premium, Ads), l'ordre d'affichage est : **Mobile Money → Carte → COD → Wallet interne**.
+- Opérateurs (par pays) : **MTN, Orange Money, Moov, Airtel, Wave** (afficher ceux disponibles pour le pays de l'utilisateur).
+- Le **sélecteur d'opérateur est un composant unique** `MobileMoneySelector`, réutilisé partout (jamais réimplémenté).
+- Flow Mobile Money : choisir opérateur → saisir numéro → **OTP obligatoire** (envoi, saisie, timeout, retry) → confirmation. L'OTP est mocké (`// TODO API`) mais le parcours UI est complet.
+
+## Communication — WhatsApp-first
+
+- Le partage produit, le contact vendeur, le contact livreur et les confirmations privilégient **WhatsApp** (icône et action dominantes).
+- Canaux de notification : **WhatsApp + SMS + push**. En zone de paiement/tracking, SMS est le **fallback** garanti.
+
+## Devise — FCFA
+
+- Devise par défaut **FCFA**, jamais substituée. Helper unique `formatFCFA(amount)` → `"1 250 000 FCFA"` (séparateur = espace insécable). Multi-devise possible plus tard mais FCFA reste la référence.
+
+## Mobile-first & low-bandwidth
+
+- **Mobile-first strict** : concevoir d'abord pour ~360px, puis élargir. Breakpoints : `sm` 640 / `md` 768 / `lg` 1024 / `xl` 1280.
+- Images via `next/image` (formats modernes, tailles responsives), **lazy loading systématique**, `sizes` correctement renseigné.
+- **Skeletons** partout pendant le chargement ; pas d'animation lourde bloquante ; `dynamic()` pour les composants lourds.
+- Messages vocaux prioritaires dans le Chat (écriture parfois difficile), compression images automatique, mode offline sync là où pertinent (Chat, Reviews, Litiges).
+
+## Tracking & connectivité
+
+- Carte GPS live avec **fallback SMS** obligatoire (connectivité intermittente).
+- Mises à jour **périodiques**, pas forcément continues, pour économiser la data.
+- ETA large accepté en zone rurale.
+
+## Livraison
+
+- Types : standard, express, same-day (grandes villes), point relais, **livraison moto** (dominante). Frais en FCFA calculés selon zone/distance/poids.
+
+## Fichiers de référence
+
+- Opérateurs par pays : `lib/constants/operators.ts` → `operatorsForCountry(country)`
+- Pays supportés : `lib/constants/countries.ts`
+- Validation téléphone : `validatePhone(phone: string, country: CountryCode): boolean` dans `lib/utils/validate-phone.ts`

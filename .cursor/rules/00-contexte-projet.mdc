@@ -1,0 +1,54 @@
+---
+description: Contexte projet AfriMarket Hub et 5 invariants non-négociables. Règle de base appliquée à toute génération.
+alwaysApply: true
+---
+
+# AfriMarket Hub — Contexte & invariants (RÈGLE DE BASE)
+
+Tu construis **AfriMarket Hub** : un écosystème marketplace africain (premier marché : Cameroun) qui combine
+**Marketplace + Logistique + SaaS (abonnements vendeurs) + Régie publicitaire + Moteur de confiance (reviews/litiges) + Sécurité compte**,
+avec **4 rôles** (Acheteur, Vendeur, Livreur, Admin/Support).
+
+Référence de positionnement : Amazon (Express) + Temu/AliExpress (Import) + Alibaba (Gros) + Uber (tracking) + Jumia (Afrique).
+
+## LES 5 INVARIANTS (jamais violés — une génération qui en viole un est à refuser)
+
+1. **Triptyque d'achat** — tout produit affiché montre ses **3 modes** : ⚡ Express (stock local, 24–72 h), 🌍 Import (prix réduit, 10–25 j), 🏭 Gros (MOQ, prix usine). **Aucun prix sans mode associé.** (voir `05-triptyque-achat.mdc`)
+2. **RBAC strict** — les 4 rôles et leur matrice de permissions ne sont jamais contournés, ni en UI ni en route. (voir `02-rbac-roles.mdc`)
+3. **Contraintes Afrique** — Mobile Money d'abord, WhatsApp-first, FCFA par défaut, mobile-first strict, low-bandwidth, fallback SMS. (voir `04-contraintes-afrique.mdc`)
+4. **Design « Afrique moderne, sobre »** — style suggestif (motifs 5–10 % d'opacité), jamais folklorique ; lisibilité e-commerce prioritaire là où l'argent est en jeu. (voir `03-design-system.mdc`)
+5. **Stack imposée** — Next.js 14+ App Router, TypeScript strict, Tailwind + Shadcn, Zustand. (voir `01-stack-technique.mdc`)
+
+## Ordre de priorité en cas d'arbitrage
+
+**Sécurité > Correction fonctionnelle > Maintenabilité > Réutilisabilité > Performance > Esthétique.**
+L'esthétique cède en dernier ; la sécurité et la justesse ne se sacrifient jamais (surtout en zone de paiement).
+
+## Méthode de travail imposée
+
+- **Ne code pas avant d'avoir conçu.** Pour toute tâche : Analyse → Conception → Planification → Implémentation → Vérification → Optimisation → Validation.
+- **Découpe au plus fin** avant d'implémenter (1 composant / 1 service par unité).
+- **Réutilise, ne duplique pas.** Avant de créer un composant, vérifie s'il existe déjà (sélecteur Mobile Money, badge vendeur, timeline de statut, carte KPI, star-rating, chip de mode d'achat…).
+- **Ne simplifie jamais une spec en silence.** Si trop complexe, signale-le et propose un découpage.
+- Marque tout backend non implémenté par `// TODO API` (avec signature) et toute IA mockée par `// TODO AI`.
+
+## Personas de référence
+
+- **Aïcha** (acheteuse, Douala, 3G) — compare Express/Import, Mobile Money, WhatsApp, vocal
+- **Emmanuel** (vendeur, Yaoundé) — produits, Premium, Ads, revenus
+- **Ibrahim** (livreur, moto) — livraisons GPS, gains
+- **Sandrine** (admin/support) — litiges, KYC, modération
+
+## Objectifs mesurables
+
+- Triptyque identique partout (0 écart visuel/fonctionnel)
+- Parcours achat ≤ 3 clics depuis une page produit
+- 0 secret en dur ; 0 route sensible sans guard RBAC
+- LCP < 2,5 s (3G simulée) sur pages produit/achat
+- 0 `any` ; composants réutilisables dans `components/shared/`
+
+## Hors-scope (v1) — ne pas implémenter sans validation
+
+Vraies passerelles de paiement, vraies clés/secrets, app mobile native, vrais modèles d'IA, i18n exhaustive, comptabilité/fiscalité réelle.
+
+> Pilotage : `PROMPT-MAITRE-AFRIMARKET-HUB.md` + `08-plan-execution.mdc` (roadmap, dépendances, statut modules). Vocabulaire/types : `docs/glossaire-et-modele-donnees.md`.

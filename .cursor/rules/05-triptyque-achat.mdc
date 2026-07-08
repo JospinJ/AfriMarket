@@ -1,0 +1,64 @@
+---
+description: Triptyque d'achat Express / Import / Gros — le fil rouge produit. Aucun prix sans mode.
+alwaysApply: true
+---
+
+# Triptyque d'achat Express / Import / Gros (INVARIANT #1)
+
+C'est le différenciateur central d'AfriMarket Hub. **Chaque produit, partout, expose ses 3 modes d'approvisionnement.**
+
+## Les 3 modes
+
+| Mode | Icône | Référence | Caractéristiques |
+|---|---|---|---|
+| **Express** | ⚡ | Amazon | stock local, livraison **24–72 h**, prix le plus élevé |
+| **Import** | 🌍 | Temu / AliExpress | **prix réduit**, délai **10–25 jours** |
+| **Gros** | 🏭 | Alibaba | **MOQ** (quantité minimale), **prix usine** dégressif |
+
+## Règle absolue
+
+> **Aucun composant, dans aucun module (Home, PDP, Cart, Checkout, Tracking, Ads, Dashboards, Store Front), n'affiche un prix sans indiquer le mode associé.**
+
+## Contrat de données (voir glossaire pour la version complète)
+
+```ts
+type PurchaseMode = "express" | "import" | "gros";
+
+interface Offer {
+  mode: PurchaseMode;
+  price: number;              // en FCFA
+  originalPrice?: number;     // pour calculer l'économie
+  deliveryEtaDays: [number, number]; // ex. [1,3] express, [10,25] import
+  moq?: number;               // requis si mode === "gros"
+  stock: number;
+}
+
+interface Product {
+  id: string;
+  // ... autres champs
+  offers: Offer[];            // TOUJOURS exactement 3 : express, import, gros
+}
+```
+
+- Un `Product` a **toujours exactement 3 offres** (une par mode). Un mock qui n'en a pas 3 est invalide.
+- Si le mode `gros` est présent, `moq` est **obligatoire** et la quantité au panier doit respecter le MOQ (validation dans `QuantityStepper` et au Checkout).
+
+## Composants dédiés (uniques, réutilisés)
+
+- **`PurchaseModeChip`** : affiche le mode (icône + label + délai) ; jamais un prix sans lui à côté.
+- **`PriceBlock`** : affiche prix courant + prix barré + `-X%` + économie, **toujours couplé** au mode sélectionné.
+- **`usePurchaseModeStore`** (Zustand) : mode sélectionné par produit, propagé du PDP jusqu'au Checkout (le mode choisi ne change pas silencieusement en cours de parcours).
+
+## Cohérence transversale
+
+Le rendu des 3 modes doit être **visuellement et fonctionnellement identique** entre Home, PDP, Cart, Checkout et Ads. Toute divergence est un bug de cohérence (contrôle Agent 0).
+
+## Helpers & propagation
+
+- `PRODUCT_MODES` et `assertThreeOffers(product)` dans `lib/utils/assert-three-offers.ts`
+- Le mode choisi au PDP est stocké dans `usePurchaseModeStore` et propagé au panier puis checkout **sans changement silencieux**
+- Chaque `CartItem.mode` doit correspondre au mode sélectionné au PDP
+
+## Test d'invariant (obligatoire)
+
+Un test échoue si un `ProductCard` / `PriceBlock` rend un prix sans mode, ou si un `Product` mocké n'a pas exactement 3 offres.

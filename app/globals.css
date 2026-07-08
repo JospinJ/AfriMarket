@@ -1,0 +1,906 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Terre */
+  --ocre: #c17f3a;
+  --terracotta: #c1502e;
+  --sand: #a9895c;
+  --noble-brown: #5c3d2e;
+  --copper: #b87333;
+
+  /* Nature */
+  --green-savanna: #3d6b4f;
+  --green-deep: #1f4d36;
+  --green-forest: #0f3322;
+  --green-agri: #4a7c59;
+
+  /* Soleil — orange = couleur principale */
+  --sunset: #e07a3a;
+  --gold: #c9a227;
+  --amber: #d4a017;
+  --brand-orange: #ff9900;
+  --brand-orange-hover: #e88b00;
+  --brand-orange-muted: #fff4e5;
+  --brand-orange-dark: #c45500;
+
+  /* Vert = couleur secondaire (confiance, succès) */
+  --brand-green: #1f4d36;
+  --brand-green-hover: #163d2b;
+  --brand-green-muted: #e8f5ee;
+
+  /* Prestige */
+  --night: #0b1220;
+  --bronze: #8b6914;
+  --ivory: #f7f5f2;
+
+  /* Surfaces */
+  --surface-light: #f7f5f2;
+  --surface-white: #ffffff;
+
+  /* Dashboard (style Seller Central / Amazon) */
+  --dash-bg: #eaeded;
+  --dash-sidebar: #131921;
+  --dash-sidebar-hover: #232f3e;
+  --dash-accent: var(--brand-orange);
+  --dash-accent-hover: var(--brand-orange-hover);
+  --dash-header: #ffffff;
+  --dash-border: #d5d9d9;
+}
+
+body {
+  @apply bg-surface-light font-sans text-night antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display tracking-tight;
+}
+
+/* Motifs africains — arrière-plan uniquement, 5–10 % opacité */
+.bg-motif-wax {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A227' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-motif-kente {
+  background-image: repeating-linear-gradient(
+      90deg,
+      rgba(201, 162, 39, 0.06) 0,
+      rgba(201, 162, 39, 0.06) 3px,
+      transparent 3px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(31, 77, 54, 0.05) 0,
+      rgba(31, 77, 54, 0.05) 3px,
+      transparent 3px,
+      transparent 12px
+    );
+}
+
+.bg-motif-kuba {
+  background-image: repeating-linear-gradient(
+      45deg,
+      rgba(31, 77, 54, 0.05) 0,
+      rgba(31, 77, 54, 0.05) 2px,
+      transparent 2px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(201, 162, 39, 0.04) 0,
+      rgba(201, 162, 39, 0.04) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+.bg-motif-bogolan {
+  background-image: radial-gradient(circle at 50% 50%, rgba(92, 61, 46, 0.07) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.bg-motif-ndop {
+  background-image: repeating-linear-gradient(
+      0deg,
+      rgba(11, 18, 32, 0.04) 0,
+      rgba(11, 18, 32, 0.04) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(184, 115, 51, 0.05) 0,
+      rgba(184, 115, 51, 0.05) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+}
+
+.bg-motif-adinkra {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9A227' stroke-opacity='0.07' stroke-width='1'%3E%3Ccircle cx='40' cy='40' r='18'/%3E%3Ccircle cx='40' cy='40' r='8'/%3E%3Cpath d='M40 22v36M22 40h36'/%3E%3Cpath d='M28 28l24 24M52 28L28 52'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Dégradés signature */
+.bg-gradient-africa {
+  background: linear-gradient(
+    135deg,
+    var(--green-forest) 0%,
+    var(--green-deep) 40%,
+    var(--night) 100%
+  );
+}
+
+.bg-gradient-sunrise {
+  background: linear-gradient(
+    120deg,
+    var(--sunset) 0%,
+    var(--gold) 45%,
+    var(--green-deep) 100%
+  );
+}
+
+.text-gradient-gold {
+  background: linear-gradient(90deg, var(--gold), var(--amber));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-sunrise {
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--gold) 50%, var(--sunset) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-africa {
+  background: linear-gradient(90deg, #ffffff 0%, var(--gold) 40%, var(--brand-orange) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Mesh & surfaces premium */
+.bg-mesh-africa {
+  background-color: var(--ivory);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 20%, rgba(255, 153, 0, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(31, 77, 54, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(201, 162, 39, 0.06) 0%, transparent 60%);
+}
+
+.bg-gradient-warm {
+  background: linear-gradient(
+    160deg,
+    var(--brand-orange-muted) 0%,
+    var(--ivory) 45%,
+    var(--brand-green-muted) 100%
+  );
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Glass morphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.glass-dark {
+  background: rgba(11, 18, 32, 0.65);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Ombres en profondeur */
+.shadow-premium-sm {
+  box-shadow:
+    0 1px 2px rgba(11, 18, 32, 0.04),
+    0 4px 16px rgba(11, 18, 32, 0.06);
+}
+
+.shadow-premium-md {
+  box-shadow:
+    0 2px 4px rgba(11, 18, 32, 0.04),
+    0 8px 32px rgba(11, 18, 32, 0.08),
+    0 0 0 1px rgba(11, 18, 32, 0.03);
+}
+
+.shadow-premium-lg {
+  box-shadow:
+    0 4px 8px rgba(11, 18, 32, 0.05),
+    0 16px 48px rgba(11, 18, 32, 0.12),
+    0 0 0 1px rgba(11, 18, 32, 0.04);
+}
+
+.shadow-premium-xl {
+  box-shadow:
+    0 8px 16px rgba(11, 18, 32, 0.06),
+    0 32px 64px rgba(11, 18, 32, 0.14),
+    0 0 0 1px rgba(11, 18, 32, 0.05);
+}
+
+/* Carte produit — reflet lumineux au survol */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.group\/card:hover .card-shine::after,
+.card-shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* Perspective 3D cartes */
+.perspective-card {
+  perspective: 1200px;
+}
+
+.perspective-card-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.perspective-card:hover .perspective-card-inner {
+  transform: rotateX(2deg) rotateY(-2deg) translateZ(8px);
+}
+
+/* Section divider décoratif */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(201, 162, 39, 0.35) 20%,
+    rgba(255, 153, 0, 0.5) 50%,
+    rgba(201, 162, 39, 0.35) 80%,
+    transparent
+  );
+}
+
+.section-divider-premium {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 153, 0, 0.65) 15%,
+    rgba(255, 153, 0, 1) 50%,
+    rgba(255, 153, 0, 0.65) 85%,
+    transparent
+  );
+}
+
+/* Numérotation section premium */
+.section-index {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.12em;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Effets premium — marketplace dynamique */
+.shadow-glow-orange {
+  box-shadow: 0 0 24px rgba(255, 153, 0, 0.35), 0 8px 24px rgba(11, 18, 32, 0.08);
+}
+
+.shadow-glow-green {
+  box-shadow: 0 0 20px rgba(31, 77, 54, 0.25), 0 8px 20px rgba(11, 18, 32, 0.06);
+}
+
+.card-premium-hover {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.25s ease;
+}
+
+.card-premium-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(11, 18, 32, 0.12);
+}
+
+.border-glow-flash {
+  animation: border-pulse 2.5s ease-in-out infinite;
+}
+
+.premium-swiper .swiper-button-next,
+.premium-swiper .swiper-button-prev {
+  color: var(--brand-orange);
+  background: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.premium-swiper .swiper-button-next::after,
+.premium-swiper .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.premium-swiper .swiper-pagination-bullet-active {
+  background: var(--brand-orange);
+}
+
+@keyframes border-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(255, 153, 0, 0.15);
+  }
+}
+
+/* ── Hero immersif — Ken Burns, profondeur, atmosphère ── */
+@keyframes hero-ken-burns {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  45% {
+    transform: scale(1.09) translate3d(-0.6%, -0.4%, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(0.5%, 0.35%, 0);
+  }
+}
+
+@keyframes hero-ken-burns-soft {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.05) translate3d(0.2%, 0.1%, 0);
+  }
+}
+
+@keyframes hero-organic-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  33% {
+    transform: translate3d(0.35%, -0.25%, 0);
+  }
+  66% {
+    transform: translate3d(-0.25%, 0.2%, 0);
+  }
+}
+
+@keyframes hero-fog-drift {
+  0%,
+  100% {
+    transform: translate3d(-1.5%, 0, 0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(1.5%, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes hero-light-sweep {
+  0%,
+  70%,
+  100% {
+    transform: translateX(-120%) skewX(-12deg);
+    opacity: 0;
+  }
+  82% {
+    opacity: 0.45;
+  }
+  90% {
+    transform: translateX(120%) skewX(-12deg);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-particle-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate3d(6px, -14px, 0);
+    opacity: 0.55;
+  }
+}
+
+.hero-immersive-stage {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.hero-immersive-ken-burns {
+  animation: hero-ken-burns 22s ease-in-out infinite alternate;
+}
+
+.hero-immersive-ken-burns--soft {
+  animation: hero-ken-burns-soft 18s ease-in-out infinite alternate;
+}
+
+.hero-immersive-drift--active {
+  animation: hero-organic-drift 14s ease-in-out infinite;
+}
+
+.hero-immersive-vignette {
+  background: radial-gradient(
+    ellipse 68% 62% at 52% 42%,
+    transparent 0%,
+    transparent 38%,
+    rgba(11, 18, 32, 0.35) 68%,
+    rgba(11, 18, 32, 0.82) 100%
+  );
+  box-shadow: inset 0 0 100px 50px rgba(11, 18, 32, 0.45);
+}
+
+.hero-immersive-fog {
+  background:
+    linear-gradient(180deg, rgba(11, 18, 32, 0.55) 0%, transparent 35%, transparent 65%, rgba(11, 18, 32, 0.65) 100%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(31, 77, 54, 0.12) 0%, transparent 55%);
+  animation: hero-fog-drift 16s ease-in-out infinite;
+}
+
+.hero-immersive-light {
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 153, 0, 0.07) 48%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(201, 162, 39, 0.06) 52%,
+    transparent 58%
+  );
+  animation: hero-light-sweep 9s ease-in-out infinite;
+}
+
+.hero-immersive-particle {
+  box-shadow: 0 0 8px rgba(255, 153, 0, 0.45);
+  animation: hero-particle-float 5s ease-in-out infinite;
+}
+
+.hero-immersive-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+@keyframes premium-orbit-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes premium-orbit-counter {
+  from {
+    transform: translateX(-50%) translateY(calc(var(--orbit-radius) * -1)) rotate(0deg);
+  }
+  to {
+    transform: translateX(-50%) translateY(calc(var(--orbit-radius) * -1)) rotate(-360deg);
+  }
+}
+
+@keyframes premium-shine-sweep {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+.premium-orbit-system {
+  width: calc(var(--orbit-radius) * 2 + clamp(80px, 20vw, 120px));
+  height: calc(var(--orbit-radius) * 2 + clamp(80px, 20vw, 120px));
+}
+
+.premium-orbit-track {
+  position: absolute;
+  inset: 0;
+  animation: premium-orbit-rotate var(--orbit-duration) linear infinite;
+  transform-origin: center center;
+}
+
+.premium-orbit-slot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: rotate(var(--orbit-angle));
+}
+
+.premium-orbit-slot-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: premium-orbit-counter var(--orbit-duration) linear infinite;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.premium-orb-shine {
+  background: radial-gradient(circle, rgba(255, 153, 0, 0.35) 0%, transparent 68%);
+  animation: premium-shine-sweep 0.7s ease-out forwards;
+}
+
+.premium-orb-surprise-glow {
+  box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.35);
+  border-radius: 9999px;
+}
+
+@keyframes premium-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.premium-marquee-track {
+  animation: premium-marquee-scroll 38s linear infinite;
+}
+
+.premium-marquee-mask:hover .premium-marquee-track {
+  animation-play-state: paused;
+}
+
+.premium-marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.premium-trending-orb {
+  animation: premium-trending-pulse 4s ease-in-out infinite;
+}
+
+@keyframes premium-trending-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 162, 39, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.15);
+  }
+}
+
+.premium-stores-frame {
+  animation: premium-frame-glow 5s ease-in-out infinite;
+}
+
+@keyframes premium-frame-glow {
+  0%,
+  100% {
+    border-color: rgba(201, 162, 39, 0.25);
+  }
+  50% {
+    border-color: rgba(255, 153, 0, 0.45);
+  }
+}
+
+.premium-badge-pulse {
+  animation: premium-badge-glow 3s ease-in-out infinite;
+}
+
+@keyframes premium-badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 16px rgba(201, 162, 39, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(255, 153, 0, 0.5);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Effet « Cadeau Surprise » — cartes produits Premium
+   Rare, aléatoire, élégant : bounce + halo + scintillement
+   ───────────────────────────────────────────── */
+
+/* Halo lumineux qui respire autour de la carte surprise */
+.gift-surprise-halo {
+  position: absolute;
+  inset: -3px;
+  border-radius: 19px; /* rounded-2xl (16px) + 3px d'inset */
+  pointer-events: none;
+  z-index: 6;
+  background: linear-gradient(
+    130deg,
+    rgba(255, 153, 0, 0.9),
+    rgba(201, 162, 39, 0.75),
+    rgba(255, 153, 0, 0.9)
+  );
+  background-size: 220% 220%;
+  padding: 2px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: gift-halo-flow 2.4s ease-in-out infinite;
+  box-shadow: 0 0 22px rgba(255, 153, 0, 0.4), 0 0 44px rgba(201, 162, 39, 0.22);
+}
+
+@keyframes gift-halo-flow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.85;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
+
+/* Balayage de brillance qui traverse la carte surprise */
+.gift-surprise-sheen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  animation: gift-sheen-sweep 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes gift-sheen-sweep {
+  to {
+    transform: translateX(130%);
+  }
+}
+
+/* Particules scintillantes */
+.gift-sparkle {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  color: var(--gold);
+  filter: drop-shadow(0 0 4px rgba(255, 153, 0, 0.8));
+  animation: gift-sparkle-pop 1.15s ease-out forwards;
+}
+
+@keyframes gift-sparkle-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.15) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.6) rotate(120deg);
+  }
+}
+
+/* Pastille « offre surprise » qui apparaît */
+.gift-surprise-pill {
+  animation: gift-pill-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes gift-pill-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.7);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Micro-interaction cœur wishlist */
+@keyframes heart-pop {
+  0% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.35);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.heart-pop {
+  animation: heart-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Éclat au clic « Ajouter au panier » */
+@keyframes cart-burst {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+.cart-burst {
+  animation: cart-burst 0.6s ease-out forwards;
+}
+
+/* Rebond du compteur panier (navbar) */
+@keyframes badge-bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.badge-bump {
+  animation: badge-bump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Événement spécial — bordure animée & faisceau lumineux ── */
+.special-event-shell {
+  position: relative;
+  border-radius: 16px;
+  padding: 2px;
+  overflow: hidden;
+  background: linear-gradient(
+    120deg,
+    var(--brand-orange) 0%,
+    var(--gold) 35%,
+    var(--green-deep) 70%,
+    var(--brand-orange) 100%
+  );
+  background-size: 300% 300%;
+  animation: special-event-gradient 5s ease infinite;
+}
+
+@keyframes special-event-gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.special-event-beam::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 62%
+  );
+  transform: translateX(-120%);
+  animation: special-event-beam 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes special-event-beam {
+  0%,
+  65%,
+  100% {
+    transform: translateX(-120%);
+  }
+  82% {
+    transform: translateX(120%);
+  }
+}
+
+.special-event-discount-pulse {
+  animation: special-event-discount 2.8s ease-in-out infinite;
+}
+
+@keyframes special-event-discount {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(193, 80, 46, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 12px 2px rgba(193, 80, 46, 0.25);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gift-surprise-halo,
+  .gift-surprise-sheen::before,
+  .gift-sparkle,
+  .gift-surprise-pill,
+  .heart-pop,
+  .cart-burst,
+  .badge-bump {
+    animation: none !important;
+  }
+  .gift-sparkle,
+  .cart-burst {
+    display: none !important;
+  }
+
+  .premium-orbit-track,
+  .premium-orbit-slot-inner,
+  .premium-marquee-track,
+  .premium-trending-orb,
+  .premium-stores-frame,
+  .premium-badge-pulse,
+  .special-event-shell,
+  .special-event-beam::after,
+  .special-event-discount-pulse,
+  .hero-immersive-ken-burns,
+  .hero-immersive-ken-burns--soft,
+  .hero-immersive-drift--active,
+  .hero-immersive-fog,
+  .hero-immersive-light,
+  .hero-immersive-particle {
+    animation: none !important;
+  }
+
+  .premium-orb-shine {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

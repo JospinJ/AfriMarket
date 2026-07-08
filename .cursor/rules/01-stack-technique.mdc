@@ -1,0 +1,67 @@
+---
+description: Stack technique imposée, arborescence, et règles Next.js/TypeScript pour AfriMarket Hub.
+alwaysApply: true
+---
+
+# Stack technique & arborescence (IMPOSÉ)
+
+## Stack (aucune alternative sans validation de l'Agent 0)
+
+- **Next.js 14+ — App Router uniquement.** Pas de Pages Router, pas de Vite, pas de Remix.
+- **TypeScript strict.** `"strict": true`, `noUncheckedIndexedAccess: true`, `noImplicitAny: true`. Fichiers `.ts`/`.tsx` uniquement.
+- **UI** : Tailwind CSS + **Shadcn UI** (composants de base) + **Framer Motion** (animations sobres) + **SwiperJS** (carrousels) + **Lucide React** (icônes).
+- **État global** : **Zustand** uniquement (panier, mode d'achat sélectionné, session UI, filtres). Pas de Redux/Recoil/MobX. Pas de Context surdimensionné.
+- **Validation** : Zod pour les schémas de formulaire et les payloads d'API.
+- **Tests** : Vitest + Testing Library (composants, stores, helpers, RBAC, invariants triptyque).
+- **Data** : mocks typés dans `lib/mocks/` pour les modules e-commerce purs ; API réelle documentée + `// TODO API` pour les modules à backend.
+
+## Server vs Client Components
+
+- **Server Component par défaut.** N'ajoute `"use client"` que si le composant a de l'état, des effets, des event handlers, ou consomme un store Zustand.
+- Garde les composants Client aussi **feuilles** que possible (pousse l'interactivité vers le bas de l'arbre).
+- Pas d'appel de données côté client si un Server Component peut le faire.
+
+## Arborescence de référence
+
+```
+app/
+  (marketing)/                 # pages publiques (home, legal…)
+  (shop)/                      # parcours d'achat (pdp, cart, checkout, tracking)
+  (dashboard)/                 # espaces par rôle, protégés RBAC
+    admin/ seller/ driver/ buyer/ support/
+  api/                         # route handlers (// TODO API où non implémenté)
+  layout.tsx  globals.css
+components/
+  ui/                          # primitives Shadcn étendues (Button, Badge, Card…)
+  shared/                      # composants métier réutilisables (PriceBlock, PurchaseModeChip,
+                               #   MobileMoneySelector, StatusTimeline, KpiCard, StarRating…)
+  <module>/                    # composants spécifiques à un module
+store/                         # stores Zustand (useCartStore, usePurchaseModeStore, useUiStore…)
+types/                         # interfaces TS partagées (voir glossaire)
+services/                      # accès données / API (mock ou // TODO API)
+lib/
+  mocks/                       # données mockées typées
+  utils/                       # helpers (formatFCFA, phone validation par pays, moq…)
+  constants/                   # opérateurs, pays, catégories, breakpoints
+hooks/                         # hooks réutilisables (useMediaQuery, useRole…)
+```
+
+## Règles Next.js
+
+- Utilise `next/image` pour **toute** image (jamais `<img>`) + `next/link` pour la navigation interne.
+- `loading.tsx` (skeleton) et `error.tsx` par segment de route significatif.
+- Métadonnées via l'API `metadata` (SEO des pages produit/boutique).
+- Code splitting : `dynamic()` pour les composants lourds (carte GPS, carrousels, charts).
+- Pas de `useEffect` pour du fetch qui peut être fait en Server Component.
+
+## Middleware & routes protégées
+
+- `middleware.ts` à la racine : protège `app/(dashboard)/admin`, `/seller`, `/driver`, `/buyer`, `/support`.
+- Segments route : `(marketing)/` pages publiques, `(shop)/` parcours achat, `(dashboard)/` espaces RBAC.
+- Page démo composants : `app/_kitchen-sink/page.tsx` (Sprint 0).
+
+## Interdits
+
+- `any`, `@ts-ignore`, `as unknown as`, désactivation de la vérification stricte.
+- Redéfinir un type déjà présent dans `types/` ou le glossaire.
+- Logique de fetch dupliquée : passe toujours par `services/`.
