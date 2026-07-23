@@ -55,7 +55,7 @@ export function FooterPaymentsBand({ compact = false }: { compact?: boolean }) {
         </div>
       )}
 
-      <div className={cn("grid gap-4", compact ? "grid-cols-1" : "lg:grid-cols-3")}>
+      <div className={cn("grid gap-4", compact ? "grid-cols-1" : "sm:grid-cols-2 lg:grid-cols-3")}>
         {PAYMENT_GROUPS.map((group) => {
           const brands = FOOTER_PAYMENT_BRANDS.filter((b) => b.category === group.id);
           const Icon = group.icon;

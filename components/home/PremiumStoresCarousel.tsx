@@ -83,7 +83,7 @@ export function PremiumStoresCarousel({ sellers }: PremiumStoresCarouselProps) {
             autoplay={{ delay: 4500, disableOnInteraction: false, pauseOnMouseEnter: true }}
             navigation
             pagination={{ clickable: true, dynamicBullets: true }}
-            className="premium-swiper !pb-10"
+            className="premium-swiper !pb-10 [&_.swiper-button-next]:hidden [&_.swiper-button-prev]:hidden sm:[&_.swiper-button-next]:flex sm:[&_.swiper-button-prev]:flex"
           >
             {sellers.map((seller, i) => (
               <SwiperSlide key={seller.id}>

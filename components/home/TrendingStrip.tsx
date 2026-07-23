@@ -80,7 +80,7 @@ export function TrendingStrip({ products }: TrendingStripProps) {
                     alt={product.title}
                     fill
                     sizes="80px"
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-contain bg-ivory p-1"
                   />
                   {isPremium && (
                     <span className="absolute inset-0 rounded-full border-2 border-gold/70" aria-hidden />

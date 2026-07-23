@@ -18,14 +18,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   }, [pathname]);
 
   return (
-    <div className="flex min-h-screen bg-dash-bg">
+    <div className="flex min-h-dvh min-w-0 overflow-x-clip bg-dash-bg">
       <DashboardSidebarDesktop />
       <DashboardSidebarMobile open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="flex min-w-0 flex-1 flex-col">
         <DashboardTopBar onMenuClick={() => setSidebarOpen(true)} />
         <DashboardMobileNav />
-        <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
+        <main className="min-w-0 flex-1 p-3 sm:p-4 md:p-6 lg:p-8">{children}</main>
       </div>
     </div>
   );

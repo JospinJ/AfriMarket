@@ -133,10 +133,10 @@ export function MarketingLanding({
       {/* Stats */}
       {stats && stats.length > 0 && (
         <section className="border-b border-sand/15 bg-surface-light">
-          <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-8 sm:grid-cols-4">
+          <dl className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-8 sm:grid-cols-4 sm:gap-6 sm:px-6">
             {stats.map((s) => (
-              <div key={s.label} className="text-center">
-                <dd className="font-display text-2xl font-bold text-primary">{s.value}</dd>
+              <div key={s.label} className="min-w-0 text-center">
+                <dd className="break-words font-display text-xl font-bold text-primary sm:text-2xl">{s.value}</dd>
                 <dt className="mt-1 text-xs text-sand">{s.label}</dt>
               </div>
             ))}

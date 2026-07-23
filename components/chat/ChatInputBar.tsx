@@ -20,11 +20,12 @@ export function ChatInputBar({ onSend }: ChatInputBarProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-sand/20 p-3 flex gap-2">
+    <form onSubmit={handleSubmit} className="flex min-w-0 gap-2 border-t border-sand/20 p-3">
       <Button
         type="button"
         variant="outline"
         size="icon"
+        className="shrink-0"
         aria-label="Enregistrer un message vocal"
         onClick={() => onSend("[Message vocal — mock]", "voice")}
       >
@@ -34,10 +35,10 @@ export function ChatInputBar({ onSend }: ChatInputBarProps) {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Écrire un message…"
-        className="flex-1"
+        className="min-w-0 flex-1"
         aria-label="Message"
       />
-      <Button type="submit" size="icon" aria-label="Envoyer">
+      <Button type="submit" size="icon" className="shrink-0" aria-label="Envoyer">
         <Send className="h-4 w-4" />
       </Button>
     </form>

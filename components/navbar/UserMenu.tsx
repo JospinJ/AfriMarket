@@ -132,7 +132,7 @@ export function UserMenu({ className, variant = "default", compact = false }: Us
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-hidden />
           <div
-            className="absolute right-0 top-full z-50 mt-1 w-56 rounded-lg border border-sand/20 bg-white py-2 shadow-lg"
+            className="absolute right-0 top-full z-50 mt-1 max-h-[min(70dvh,24rem)] w-56 max-w-[calc(100vw-2rem)] overflow-y-auto rounded-lg border border-sand/20 bg-white py-2 shadow-lg"
             role="menu"
           >
             <p className="border-b border-sand/10 px-4 py-2 text-xs text-sand">

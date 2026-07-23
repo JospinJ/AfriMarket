@@ -4,9 +4,9 @@ import { ROUTES } from "@/lib/constants/routes";
 
 export default function ShopLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-ivory bg-motif-bogolan">
+    <div className="min-h-screen min-w-0 overflow-x-clip bg-ivory bg-motif-bogolan">
       <Navbar />
-      <main className="min-h-[60vh]">{children}</main>
+      <main className="min-h-[60vh] min-w-0">{children}</main>
       <footer className="border-t border-sand/15 bg-white py-6 text-center text-xs text-sand">
         <Link href={ROUTES.legalPrivacy} className="hover:text-primary">
           Paiement sécurisé

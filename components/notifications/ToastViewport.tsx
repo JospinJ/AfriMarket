@@ -13,7 +13,7 @@ export function ToastViewport() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-4 right-4 z-[100] flex w-[min(100vw-2rem,360px)] flex-col gap-2"
+      className="pointer-events-none fixed bottom-4 right-4 z-[100] flex w-[min(calc(100dvw-2rem),360px)] max-w-[calc(100%-2rem)] flex-col gap-2 safe-pb"
       aria-live="polite"
       aria-relevant="additions"
     >

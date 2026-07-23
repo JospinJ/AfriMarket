@@ -61,7 +61,7 @@ export function LocationSelector({ className, variant = "light" }: LocationSelec
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} aria-hidden />
-          <div className="absolute left-0 top-full z-50 mt-1 w-64 rounded-lg border border-sand/20 bg-white p-3 shadow-lg">
+          <div className="absolute left-0 right-0 top-full z-50 mt-1 w-full max-w-xs rounded-lg border border-sand/20 bg-white p-3 shadow-lg sm:right-auto sm:w-64">
             <p className="mb-2 text-xs font-medium text-sand">Localisation</p>
             {/* TODO API: localisation utilisateur (pays/région/ville) */}
             <label className="mb-2 block text-xs text-night">

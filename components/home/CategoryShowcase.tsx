@@ -67,7 +67,7 @@ export function CategoryShowcase() {
                 />
                 <div className="absolute inset-0 bg-motif-kuba opacity-15" aria-hidden />
                 <div className="absolute inset-0 flex flex-col justify-end p-4">
-                  <span className="font-display text-base font-bold text-white md:text-lg">
+                  <span className="line-clamp-2 font-display text-sm font-bold leading-snug text-white md:text-lg">
                     {cat.name}
                   </span>
                   <span className="mt-0.5 text-xs text-white/75">

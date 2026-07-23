@@ -122,7 +122,7 @@ export function HeroCarousel() {
               <div className="absolute inset-0 bg-motif-kuba opacity-15" aria-hidden />
 
               <motion.div
-                className="absolute inset-0 flex flex-col justify-center px-6 md:px-14"
+                className="absolute inset-0 flex flex-col justify-center px-14 sm:px-10 md:px-14"
                 initial="hidden"
                 animate="visible"
                 variants={{
@@ -180,7 +180,7 @@ export function HeroCarousel() {
       <button
         type="button"
         onClick={prev}
-        className="absolute left-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange"
+        className="absolute left-2 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange min-[480px]:flex sm:left-3 sm:h-12 sm:w-12"
         aria-label="Slide précédent"
       >
         <ChevronLeft size={22} />
@@ -188,7 +188,7 @@ export function HeroCarousel() {
       <button
         type="button"
         onClick={next}
-        className="absolute right-3 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange"
+        className="absolute right-2 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange min-[480px]:flex sm:right-3 sm:h-12 sm:w-12"
         aria-label="Slide suivant"
       >
         <ChevronRight size={22} />

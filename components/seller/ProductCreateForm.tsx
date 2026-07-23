@@ -104,7 +104,7 @@ export function ProductCreateForm({ onboarding = false }: { onboarding?: boolean
             <Input
               value={form.title}
               onChange={(e) => update("title", e.target.value)}
-              placeholder="Ex. Robe wax premium"
+              placeholder="Ex. Sac cuir artisanal"
               required
             />
           </FormField>

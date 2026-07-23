@@ -121,7 +121,7 @@ export function MobileDrawer() {
                 </button>
               </div>
 
-              <div className="mb-3 grid grid-cols-4 gap-2">
+              <div className="mb-3 grid grid-cols-2 gap-2 min-[400px]:grid-cols-4">
                 {shortcuts.map((item) => (
                   <Link
                     key={item.label}
@@ -130,7 +130,7 @@ export function MobileDrawer() {
                     className="flex min-h-16 flex-col items-center justify-center gap-1 rounded-xl bg-white/8 px-1 py-2 text-center text-[11px] font-medium text-white transition-colors hover:bg-white/12"
                   >
                     <item.icon size={18} className="text-primary" aria-hidden />
-                    <span className="leading-tight">{item.label}</span>
+                    <span className="line-clamp-2 leading-tight">{item.label}</span>
                   </Link>
                 ))}
               </div>
@@ -161,7 +161,7 @@ export function MobileDrawer() {
                         <Link
                           href={ROUTES.category(cat.slug)}
                           onClick={() => setOpen(false)}
-                          className="flex-1 px-3 py-3 text-sm font-semibold text-night"
+                          className="min-w-0 flex-1 truncate px-3 py-3 text-sm font-semibold text-night"
                         >
                           {cat.name}
                         </Link>

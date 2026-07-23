@@ -69,7 +69,7 @@ export function PremiumOrbCard({
             alt=""
             fill
             sizes="84px"
-            className="object-cover"
+            className="object-contain bg-ivory p-1"
             draggable={false}
           />
           <span

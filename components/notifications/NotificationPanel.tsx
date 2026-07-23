@@ -119,7 +119,7 @@ export function NotificationPanel({ onClose, className }: NotificationPanelProps
   return (
     <div
       className={cn(
-        "flex w-[min(100vw-2rem,380px)] flex-col overflow-hidden rounded-xl border border-white/10 bg-night shadow-2xl",
+        "flex w-[min(calc(100dvw-2rem),380px)] max-w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-night shadow-2xl",
         className,
       )}
     >

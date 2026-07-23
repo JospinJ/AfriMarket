@@ -82,7 +82,7 @@ function EventCountdown({
 }) {
   return (
     <div
-      className="flex items-end gap-1.5 sm:gap-2"
+      className="flex max-w-full flex-wrap items-end justify-center gap-1.5 sm:justify-start sm:gap-2"
       aria-live="polite"
       aria-label={`Compte à rebours : ${countdown.d} jours, ${countdown.h} heures, ${countdown.m} minutes`}
     >

@@ -36,7 +36,7 @@ export function PurchaseModeChip({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1 rounded-full font-medium",
+        "inline-flex max-w-full min-w-0 items-center gap-1 rounded-full font-medium",
         mode === "express" && "bg-green-deep/10 text-green-deep",
         mode === "import" && "bg-gold/15 text-gold",
         mode === "gros" && "bg-sand/20 text-sand",
@@ -44,9 +44,9 @@ export function PurchaseModeChip({
         className
       )}
     >
-      <span aria-hidden="true">{config.icon}</span>
-      <span>{config.label}</span>
-      {eta && <span className="opacity-70">· {eta}</span>}
+      <span aria-hidden="true" className="shrink-0">{config.icon}</span>
+      <span className="truncate">{config.label}</span>
+      {eta && <span className="shrink-0 opacity-70">· {eta}</span>}
     </span>
   );
 }

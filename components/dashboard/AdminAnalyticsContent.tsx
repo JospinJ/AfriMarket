@@ -20,7 +20,7 @@ export function AdminAnalyticsContent() {
   return (
     <ProfileDashboard
       headerExtra={
-        <div className="flex justify-end">
+        <div className="flex flex-wrap justify-start gap-2 sm:justify-end">
           <AfricaRegionFilter value={region} onChange={setRegion} />
         </div>
       }

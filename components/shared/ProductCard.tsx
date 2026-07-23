@@ -185,9 +185,9 @@ function ProductCardInner({ product, seller, className, isSurprise = false }: Pr
           </div>
         </Link>
 
-        <CardContent className="flex flex-col gap-2.5 p-4">
-          <Link href={`/products/${product.slug}`}>
-            <h3 className="line-clamp-2 text-sm font-semibold leading-snug text-night transition-colors group-hover/card:text-primary">
+        <CardContent className="flex min-w-0 flex-col gap-2 p-3 sm:gap-2.5 sm:p-4">
+          <Link href={`/products/${product.slug}`} className="min-w-0">
+            <h3 className="line-clamp-2 break-words text-sm font-semibold leading-snug text-night transition-colors group-hover/card:text-primary">
               {product.title}
             </h3>
           </Link>
@@ -197,8 +197,8 @@ function ProductCardInner({ product, seller, className, isSurprise = false }: Pr
           <PriceBlock offer={offer} size="sm" />
         </CardContent>
 
-        <CardFooter className="p-4 pt-0">
-          <motion.div className="relative w-full" whileTap={{ scale: 0.96 }}>
+        <CardFooter className="p-3 pt-0 sm:p-4 sm:pt-0">
+          <motion.div className="relative w-full min-w-0" whileTap={{ scale: 0.96 }}>
             {/* Éclat au clic */}
             {burstKey > 0 && !prefersReducedMotion && (
               <span
@@ -210,7 +210,7 @@ function ProductCardInner({ product, seller, className, isSurprise = false }: Pr
             <Button
               type="button"
               className={cn(
-                "w-full rounded-xl font-semibold shadow-premium-sm transition-all",
+                "w-full min-w-0 whitespace-normal rounded-xl px-2 text-[11px] font-semibold shadow-premium-sm transition-all sm:px-3 sm:text-xs",
                 justAdded
                   ? "bg-secondary hover:bg-secondary shadow-glow-green"
                   : "hover:shadow-glow-orange"

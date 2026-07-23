@@ -11,7 +11,7 @@ export interface ConversationSidebarProps {
 
 export function ConversationSidebar({ conversations, selectedId, onSelect }: ConversationSidebarProps) {
   return (
-    <aside className="w-full max-w-xs shrink-0 border-r border-sand/20 overflow-y-auto">
+    <aside className="flex h-full w-full min-w-0 flex-col overflow-y-auto">
       <div className="border-b border-sand/20 p-4">
         <h2 className="font-display font-semibold text-night">Messages</h2>
       </div>

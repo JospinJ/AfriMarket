@@ -66,7 +66,7 @@ function ActivityCard({
       exit={{ opacity: 0, x: -16, scale: 0.98 }}
       transition={{ type: "spring", stiffness: 380, damping: 28 }}
       className={cn(
-        "pointer-events-auto flex max-w-[min(320px,calc(100vw-2rem))] items-start gap-3 rounded-xl border p-3 shadow-lg backdrop-blur-sm",
+        "pointer-events-auto flex max-w-[min(320px,calc(100%-2rem))] items-start gap-3 rounded-xl border p-3 shadow-lg backdrop-blur-sm",
         STYLES[activity.type]
       )}
       role="status"

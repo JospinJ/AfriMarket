@@ -105,10 +105,8 @@ function HomePageContent() {
       <div
         className={`transition-opacity duration-200 ${isFiltering ? "opacity-75" : ""}`}
       >
-        {/* ── Acte I : Accroche cinématique ── */}
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <HomeHero />
-        </div>
+        {/* ── Acte I : Accroche cinématique (full-bleed, hors gutter) ── */}
+        <HomeHero />
         <AfricanIdentityBanner />
         <DiscoveryTicker />
 

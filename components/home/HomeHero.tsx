@@ -304,7 +304,7 @@ export function HomeHero() {
   return (
     <section
       ref={containerRef}
-      className="relative -mx-4 overflow-hidden bg-night sm:-mx-6 lg:-mx-[max(1rem,calc((100vw-80rem)/2+1rem))]"
+      className="relative w-full overflow-hidden bg-night"
       aria-roledescription="carrousel"
       aria-label="Sélection AfriMarket Hub"
       onMouseEnter={() => setPaused(true)}
@@ -318,7 +318,7 @@ export function HomeHero() {
       tabIndex={0}
     >
       <div
-        className="relative min-h-[min(94vh,760px)] overflow-hidden bg-night"
+        className="relative min-h-[min(85dvh,760px)] overflow-hidden bg-night sm:min-h-[min(90dvh,760px)]"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -382,7 +382,7 @@ export function HomeHero() {
 
         {/* ── Contenu éditorial ── */}
         <motion.div
-          className="relative mx-auto flex min-h-[min(94vh,760px)] max-w-7xl flex-col justify-center px-6 py-16 md:px-10 md:py-20 lg:max-w-[60%] lg:py-24"
+          className="relative mx-auto flex min-h-[min(85dvh,760px)] max-w-7xl flex-col justify-center px-4 py-14 sm:min-h-[min(90dvh,760px)] sm:px-6 sm:py-16 md:px-10 md:py-20 lg:max-w-[60%] lg:py-24"
           style={{ y: contentY, opacity }}
         >
           <AnimatePresence mode="wait">
@@ -404,7 +404,7 @@ export function HomeHero() {
 
               <motion.h1
                 variants={itemVariants}
-                className="font-display text-4xl font-bold leading-[1.06] tracking-tight sm:text-5xl md:text-6xl lg:text-[3.75rem]"
+                className="font-display text-[clamp(1.75rem,6vw,3.75rem)] font-bold leading-[1.08] tracking-tight"
               >
                 <span className="text-white">{slide.titleTop}</span>
                 <br />
@@ -418,20 +418,20 @@ export function HomeHero() {
                 {slide.subtitle}
               </motion.p>
 
-              <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-3">
-                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}>
-                  <Button asChild className="h-12 px-8 text-base shadow-glow-orange">
+              <motion.div variants={itemVariants} className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
+                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
+                  <Button asChild className="h-12 w-full px-8 text-base shadow-glow-orange sm:w-auto">
                     <Link href={slide.primary.href}>
                       {slide.primary.label}
                       <PrimaryIcon className="ml-2 h-5 w-5" aria-hidden />
                     </Link>
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}>
+                <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} className="w-full sm:w-auto">
                   <Button
                     asChild
                     variant="secondary"
-                    className="h-12 px-8 text-base backdrop-blur-sm"
+                    className="h-12 w-full px-8 text-base backdrop-blur-sm sm:w-auto"
                   >
                     <Link href={slide.secondary.href}>
                       {SecondaryIcon ? <SecondaryIcon className="mr-2 h-5 w-5" aria-hidden /> : null}
@@ -448,7 +448,7 @@ export function HomeHero() {
         <button
           type="button"
           onClick={prev}
-          className="absolute left-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:left-5"
+          className="absolute left-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary min-[480px]:flex sm:left-3 sm:h-12 sm:w-12 md:left-5"
           aria-label="Slide précédent"
         >
           <ChevronLeft size={22} />
@@ -456,7 +456,7 @@ export function HomeHero() {
         <button
           type="button"
           onClick={next}
-          className="absolute right-3 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:right-5"
+          className="absolute right-2 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full glass-dark text-white transition-all hover:bg-primary/80 hover:shadow-glow-orange focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary min-[480px]:flex sm:right-3 sm:h-12 sm:w-12 md:right-5"
           aria-label="Slide suivant"
         >
           <ChevronRight size={22} />

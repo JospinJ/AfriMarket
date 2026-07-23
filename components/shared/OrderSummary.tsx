@@ -29,14 +29,14 @@ export function OrderSummary({
           const product = getProductById(item.productId);
           return (
             <li key={`${item.productId}-${item.mode}`} className="flex justify-between gap-2 text-sm">
-              <div>
-                <p className="font-medium text-night">{item.title ?? product?.title}</p>
-                <div className="mt-1 flex items-center gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="line-clamp-2 break-words font-medium text-night">{item.title ?? product?.title}</p>
+                <div className="mt-1 flex min-w-0 flex-wrap items-center gap-2">
                   <PurchaseModeChip mode={item.mode} size="sm" />
                   <span className="text-sand">×{item.quantity}</span>
                 </div>
               </div>
-              <span className="shrink-0 font-medium">
+              <span className="shrink-0 font-medium tabular-nums">
                 {formatFCFA(item.unitPrice * item.quantity)}
               </span>
             </li>

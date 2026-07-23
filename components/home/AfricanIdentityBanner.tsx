@@ -13,13 +13,13 @@ export function AfricanIdentityBanner() {
     >
       <div className="absolute inset-0 bg-motif-bogolan opacity-[0.07]" aria-hidden />
 
-      <div className="relative mx-auto flex max-w-7xl items-stretch">
+      <div className="relative mx-auto flex max-w-7xl min-w-0 items-stretch">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative hidden w-[28%] shrink-0 sm:block lg:w-[24%]"
+          className="relative hidden w-[28%] shrink-0 md:block lg:w-[24%]"
         >
           <Image
             src={IMAGES.africa.silhouettes}
@@ -31,7 +31,7 @@ export function AfricanIdentityBanner() {
           />
         </motion.div>
 
-        <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 py-8 text-center sm:py-10">
+        <div className="relative z-10 flex min-w-0 flex-1 flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10">
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export function AfricanIdentityBanner() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative hidden min-h-[160px] w-[28%] shrink-0 sm:block lg:w-[24%]"
+          className="relative hidden min-h-[160px] w-[28%] shrink-0 md:block lg:w-[24%]"
         >
           <motion.div
             className="absolute inset-0"

@@ -29,22 +29,22 @@ export function CartItemRow({ item }: CartItemRowProps) {
   const moqError = item.mode === "gros" && offer.moq && item.quantity < offer.moq;
 
   return (
-    <div className="flex gap-3 rounded-xl bg-white p-3 shadow-sm">
+    <div className="flex min-w-0 gap-3 rounded-xl bg-white p-3 shadow-sm">
       <Link href={`/products/${product.slug}`} className="relative h-20 w-20 shrink-0 overflow-hidden rounded-lg">
         <Image
           src={item.image ?? product.images[0] ?? ""}
           alt={item.title ?? product.title}
           fill
           sizes="80px"
-          className="object-cover"
+          className="object-contain bg-ivory p-1"
         />
       </Link>
-      <div className="flex flex-1 flex-col gap-2">
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex justify-between gap-2">
-          <div>
+          <div className="min-w-0 flex-1">
             <Link
               href={`/products/${product.slug}`}
-              className="font-medium text-night hover:text-green-deep"
+              className="line-clamp-2 break-words font-medium text-night hover:text-green-deep"
             >
               {item.title ?? product.title}
             </Link>
@@ -67,14 +67,14 @@ export function CartItemRow({ item }: CartItemRowProps) {
           </button>
         </div>
         <PriceBlock offer={offer} size="sm" />
-        <div className="flex items-end justify-between">
+        <div className="flex min-w-0 flex-col items-stretch gap-2 sm:flex-row sm:items-end sm:justify-between">
           <QuantityStepper
             quantity={item.quantity}
             max={offer.stock}
             moq={offer.moq}
             onChange={(q) => updateQuantity(item.productId, item.mode, q)}
           />
-          <span className="font-bold text-night">{formatFCFA(lineTotal)}</span>
+          <span className="shrink-0 self-end font-bold tabular-nums text-night sm:self-auto">{formatFCFA(lineTotal)}</span>
         </div>
         {moqError && (
           <p className="text-xs text-terracotta">

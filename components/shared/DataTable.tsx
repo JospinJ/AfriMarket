@@ -33,12 +33,12 @@ export function DataTable<T extends Record<string, unknown>>({
   }
 
   return (
-    <div className={cn("overflow-x-auto rounded-lg border border-sand/20 bg-white", className)}>
-      <table className="w-full text-sm">
+    <div className={cn("w-full max-w-full overflow-x-auto rounded-lg border border-sand/20 bg-white", className)}>
+      <table className="w-full min-w-[32rem] text-sm">
         <thead>
           <tr className="border-b border-sand/20 bg-surface-light">
             {columns.map((col) => (
-              <th key={col.key} className={cn("px-4 py-3 text-left font-medium text-night", col.className)}>
+              <th key={col.key} className={cn("whitespace-nowrap px-3 py-3 text-left font-medium text-night sm:px-4", col.className)}>
                 {col.header}
               </th>
             ))}
@@ -48,7 +48,7 @@ export function DataTable<T extends Record<string, unknown>>({
           {data.map((row) => (
             <tr key={keyExtractor(row)} className="border-b border-sand/10 last:border-0 hover:bg-surface-light/50">
               {columns.map((col) => (
-                <td key={col.key} className={cn("px-4 py-3 text-night/80", col.className)}>
+                <td key={col.key} className={cn("max-w-[16rem] truncate px-3 py-3 text-night/80 sm:px-4", col.className)}>
                   {col.render ? col.render(row) : String(row[col.key] ?? "")}
                 </td>
               ))}

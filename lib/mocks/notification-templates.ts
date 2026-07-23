@@ -16,7 +16,7 @@ const SELLER_SEED: Omit<AppNotification, "id" | "read" | "createdAt">[] = [
     category: "product",
     titleKey: "notifications.events.seller_product_approved.title",
     messageKey: "notifications.events.seller_product_approved.message",
-    params: { product: "Robe wax premium" },
+    params: { product: "Casque Bluetooth JBL Tune 510" },
     href: "/seller/products",
     targetRole: "seller",
   },
@@ -184,7 +184,7 @@ export const LIVE_EVENT_POOL: Record<
       category: "message",
       titleKey: "notifications.events.buyer_seller_reply.title",
       messageKey: "notifications.events.buyer_seller_reply.message",
-      params: { seller: "Boutique Étoile", product: "Robe wax" },
+      params: { seller: "Boutique Étoile", product: "iPhone 13 Reconditionné" },
       href: "/messages",
     },
     {

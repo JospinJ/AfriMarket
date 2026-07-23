@@ -44,7 +44,7 @@ export function PromoWelcomeModal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ type: "spring", stiffness: 320, damping: 26 }}
-            className="fixed left-1/2 top-1/2 z-[61] w-[min(420px,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="fixed left-1/2 top-1/2 z-[61] w-[min(420px,calc(100%-2rem))] max-w-[calc(100dvw-2rem)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl bg-white shadow-2xl"
             role="dialog"
             aria-labelledby="promo-title"
             aria-modal="true"

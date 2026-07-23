@@ -76,7 +76,7 @@ export function FlashSaleSection({ products }: FlashSaleSectionProps) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05 }}
-            className="w-[min(200px,45vw)] shrink-0 snap-start sm:w-[220px]"
+            className="w-[min(240px,78vw)] shrink-0 snap-start sm:w-[220px]"
           >
             <ProductCard product={product} seller={getSellerById(product.sellerId)} />
           </motion.div>

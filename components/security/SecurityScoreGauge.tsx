@@ -17,7 +17,7 @@ export function SecurityScoreGauge({ score, level }: SecurityScoreGaugeProps) {
   const offset = circumference - (score / 100) * circumference;
 
   return (
-    <div className="flex items-center gap-6 rounded-2xl border border-sand/20 bg-white p-6">
+    <div className="flex flex-col items-center gap-4 rounded-2xl border border-sand/20 bg-white p-4 sm:flex-row sm:items-center sm:gap-6 sm:p-6">
       <div className="relative h-28 w-28 shrink-0">
         <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
           <circle cx="50" cy="50" r="45" fill="none" stroke="var(--sand)" strokeOpacity="0.2" strokeWidth="8" />
@@ -41,7 +41,7 @@ export function SecurityScoreGauge({ score, level }: SecurityScoreGaugeProps) {
       <div>
         <h2 className="font-display text-lg font-semibold text-night">Score de sécurité</h2>
         <p className={cn("mt-1 text-sm font-medium", config.color)}>Niveau {config.label}</p>
-        <p className="mt-2 text-xs text-sand">
+        <p className="mt-2 text-xs text-sand sm:max-w-sm">
           Activez la 2FA et vérifiez vos appareils pour améliorer votre score.
         </p>
       </div>

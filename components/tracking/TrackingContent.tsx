@@ -67,20 +67,26 @@ export function TrackingContent({ order, tracking }: TrackingContentProps) {
         <h3 className="mb-3 font-semibold text-night">Articles</h3>
         <ul className="space-y-3">
           {order.items.map((item) => (
-            <li key={`${item.productId}-${item.mode}`} className="flex gap-3">
+            <li key={`${item.productId}-${item.mode}`} className="flex min-w-0 gap-3">
               {item.image && (
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
-                  <Image src={item.image} alt={item.title ?? ""} fill sizes="64px" className="object-cover" />
+                  <Image
+                    src={item.image}
+                    alt={item.title ?? ""}
+                    fill
+                    sizes="64px"
+                    className="object-contain bg-ivory p-1"
+                  />
                 </div>
               )}
-              <div className="flex-1">
-                <p className="font-medium text-night">{item.title}</p>
-                <div className="mt-1 flex items-center gap-2">
+              <div className="min-w-0 flex-1">
+                <p className="line-clamp-2 break-words font-medium text-night">{item.title}</p>
+                <div className="mt-1 flex flex-wrap items-center gap-2">
                   <PurchaseModeChip mode={item.mode} size="sm" />
                   <span className="text-sm text-sand">×{item.quantity}</span>
                 </div>
               </div>
-              <span className="font-medium">{formatFCFA(item.unitPrice * item.quantity)}</span>
+              <span className="shrink-0 font-medium tabular-nums">{formatFCFA(item.unitPrice * item.quantity)}</span>
             </li>
           ))}
         </ul>

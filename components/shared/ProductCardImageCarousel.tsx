@@ -22,23 +22,31 @@ export function ProductCardImageCarousel({
   sizes = "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw",
 }: ProductCardImageCarouselProps) {
   const prefersReducedMotion = useReducedMotion();
-  const gallery = images.length > 0 ? images : [IMAGES.placeholder];
+  // Évite `src=""` (Next/Image n'affiche rien) + fallback si l'image distante échoue (mobile/réseau).
+  const gallery = (images ?? []).filter((src) => typeof src === "string" && src.trim().length > 0);
   const [index, setIndex] = useState(0);
+  const [hadError, setHadError] = useState(false);
   const hasMultiple = gallery.length > 1;
+
+  const currentSrc = hadError ? IMAGES.placeholder : (gallery[index] ?? IMAGES.placeholder);
+
+  useEffect(() => {
+    setHadError(false);
+  }, [index]);
 
   useEffect(() => {
     if (!hasMultiple || prefersReducedMotion) return;
     const id = setInterval(() => {
-      setIndex((i) => (i + 1) % gallery.length);
+      setIndex((i) => (i + 1) % Math.max(gallery.length, 1));
     }, AUTOPLAY_MS);
     return () => clearInterval(id);
   }, [gallery.length, hasMultiple, prefersReducedMotion]);
 
   return (
-    <div className={cn("relative h-full w-full", className)}>
+    <div className={cn("relative h-full w-full bg-ivory", className)}>
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key={`${gallery[index]}-${index}`}
+          key={`${currentSrc}-${index}`}
           initial={prefersReducedMotion ? false : { opacity: 0, scale: 1.04 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.98 }}
@@ -46,11 +54,14 @@ export function ProductCardImageCarousel({
           className="absolute inset-0"
         >
           <Image
-            src={gallery[index] ?? IMAGES.placeholder}
+            src={currentSrc}
             alt={alt}
             fill
             sizes={sizes}
-            className="object-cover"
+            className="object-contain p-2"
+            draggable={false}
+            onError={() => setHadError(true)}
+            unoptimized={currentSrc.startsWith("http")}
           />
         </motion.div>
       </AnimatePresence>

@@ -72,14 +72,14 @@ export function SpecialtyStoresShowcase() {
                 </div>
 
                 <div className="p-5">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h3 className="font-display text-lg font-bold text-night group-hover:text-primary">
+                  <div className="flex min-w-0 items-start justify-between gap-2">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="truncate font-display text-lg font-bold text-night group-hover:text-primary">
                         {seller.storeName}
                       </h3>
-                      <p className="mt-0.5 text-xs text-sand">{profile?.tagline}</p>
+                      <p className="mt-0.5 line-clamp-2 text-xs text-sand">{profile?.tagline}</p>
                     </div>
-                    <SellerBadge tier={seller.tier} verified={seller.kycStatus === "verified"} />
+                    <SellerBadge className="shrink-0" tier={seller.tier} verified={seller.kycStatus === "verified"} />
                   </div>
 
                   <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-sand">
@@ -108,7 +108,7 @@ export function SpecialtyStoresShowcase() {
                           alt=""
                           fill
                           sizes="48px"
-                          className="object-cover"
+                          className="object-contain bg-ivory p-1"
                         />
                       </div>
                       <div className="min-w-0 flex-1">

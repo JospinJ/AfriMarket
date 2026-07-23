@@ -19,7 +19,7 @@ export const LIVE_ACTIVITIES: LiveActivity[] = [
   {
     id: "a2",
     type: "sale",
-    message: "Robe wax premium",
+    message: "Casque Bluetooth JBL",
     city: "Yaoundé",
     minutesAgo: 3,
   },

@@ -12,7 +12,9 @@ export function CartUpsell() {
       {/* TODO AI: recommandations panier */}
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {suggestions.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <div key={product.id} className="min-w-0">
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </section>

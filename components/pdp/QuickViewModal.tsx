@@ -39,7 +39,7 @@ export function QuickViewModal() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 16, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 380, damping: 30 }}
-            className="fixed inset-x-4 top-[5vh] z-[71] mx-auto max-h-[90vh] max-w-5xl overflow-y-auto rounded-2xl bg-ivory shadow-premium-xl scrollbar-hide sm:inset-x-auto"
+            className="fixed inset-x-4 top-[5vh] z-[71] mx-auto max-h-[min(90dvh,900px)] max-w-5xl overflow-y-auto rounded-2xl bg-ivory shadow-premium-xl scrollbar-hide sm:inset-x-6"
           >
             <div className="sticky top-0 z-10 flex items-center justify-between border-b border-sand/15 bg-white/95 px-4 py-3 backdrop-blur-sm">
               <p id="quick-view-title" className="font-display text-sm font-bold text-night">

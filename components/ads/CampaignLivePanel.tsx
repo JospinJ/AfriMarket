@@ -36,17 +36,17 @@ export function CampaignLivePanel({ campaign }: CampaignLivePanelProps) {
         </div>
       </div>
       {campaign.metrics && (
-        <div className="mt-3 grid grid-cols-3 gap-2 text-center text-xs">
-          <div>
-            <p className="font-semibold text-night">{campaign.metrics.impressions.toLocaleString("fr-FR")}</p>
+        <div className="mt-3 grid grid-cols-1 gap-2 text-center text-xs min-[380px]:grid-cols-3">
+          <div className="min-w-0">
+            <p className="truncate font-semibold tabular-nums text-night">{campaign.metrics.impressions.toLocaleString("fr-FR")}</p>
             <p className="text-sand">Impressions</p>
           </div>
-          <div>
-            <p className="font-semibold text-night">{campaign.metrics.clicks.toLocaleString("fr-FR")}</p>
+          <div className="min-w-0">
+            <p className="truncate font-semibold tabular-nums text-night">{campaign.metrics.clicks.toLocaleString("fr-FR")}</p>
             <p className="text-sand">Clics</p>
           </div>
-          <div>
-            <p className="font-semibold text-night">{campaign.metrics.ctr}%</p>
+          <div className="min-w-0">
+            <p className="truncate font-semibold tabular-nums text-night">{campaign.metrics.ctr}%</p>
             <p className="text-sand">CTR</p>
           </div>
         </div>

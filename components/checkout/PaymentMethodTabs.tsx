@@ -17,7 +17,7 @@ interface PaymentMethodTabsProps {
 
 export function PaymentMethodTabs({ selected, onSelect }: PaymentMethodTabsProps) {
   return (
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+    <div className="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 sm:grid-cols-4">
       {METHODS.map((method) => (
         <button
           key={method.id}
@@ -30,8 +30,8 @@ export function PaymentMethodTabs({ selected, onSelect }: PaymentMethodTabsProps
               : "border-sand/30 bg-white hover:border-sand"
           )}
         >
-          <span className="block text-xl">{method.icon}</span>
-          {method.label}
+          <span className="block text-xl" aria-hidden>{method.icon}</span>
+          <span className="mt-1 block break-words leading-snug">{method.label}</span>
         </button>
       ))}
     </div>

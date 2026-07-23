@@ -8,7 +8,7 @@ export function DiscoveryTicker() {
 
   return (
     <div
-      className="relative -mx-4 overflow-hidden border-y border-primary/25 bg-night sm:-mx-6 lg:-mx-[max(1rem,calc((100vw-80rem)/2+1rem))]"
+      className="relative w-full overflow-hidden border-y border-primary/25 bg-night"
       aria-label="Tendances et promotions"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10" aria-hidden />

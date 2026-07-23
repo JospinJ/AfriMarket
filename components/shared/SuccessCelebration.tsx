@@ -76,7 +76,7 @@ export function SuccessCelebration({ open, onClose, type, className }: SuccessCe
           exit={{ opacity: 0, y: 12, scale: 0.98 }}
           transition={{ type: "spring", stiffness: 380, damping: 28 }}
           className={cn(
-            "fixed bottom-6 left-1/2 z-50 w-[min(400px,calc(100vw-2rem))] -translate-x-1/2",
+            "fixed bottom-6 left-1/2 z-50 w-[min(400px,calc(100%-2rem))] max-w-[calc(100dvw-2rem)] -translate-x-1/2 safe-pb",
             className
           )}
           role="status"

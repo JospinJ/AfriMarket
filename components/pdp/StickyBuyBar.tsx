@@ -25,15 +25,17 @@ export function StickyBuyBar({
   pulse,
 }: StickyBuyBarProps) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-sand/20 bg-white/95 p-3 shadow-premium-lg backdrop-blur-md md:hidden">
-      <div className="mb-2 flex items-center justify-between">
-        <PurchaseModeChip
-          mode={offer.mode}
-          etaDays={offer.deliveryEtaDays}
-          moq={offer.moq}
-          size="sm"
-        />
-        <span className="font-display text-lg font-bold text-night">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-sand/20 bg-white/95 p-3 shadow-premium-lg backdrop-blur-md safe-pb md:hidden">
+      <div className="mb-2 flex min-w-0 items-center justify-between gap-2">
+        <div className="min-w-0 shrink">
+          <PurchaseModeChip
+            mode={offer.mode}
+            etaDays={offer.deliveryEtaDays}
+            moq={offer.moq}
+            size="sm"
+          />
+        </div>
+        <span className="shrink-0 font-display text-base font-bold tabular-nums text-night sm:text-lg">
           {formatFCFA(offer.price)}
         </span>
       </div>

@@ -103,6 +103,7 @@ export function ProductFeed({
         {visibleProducts.map((product, i) => (
           <motion.div
             key={product.id}
+            className="min-w-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}

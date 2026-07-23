@@ -52,17 +52,17 @@ export function DeliveryMethodPicker({
               disabled={!available}
               onClick={() => onSelect(method.id)}
               className={cn(
-                "flex items-center justify-between rounded-xl border p-4 text-left transition-colors",
+                "flex min-w-0 items-center justify-between gap-3 rounded-xl border p-3 text-left transition-colors sm:p-4",
                 selected === method.id
                   ? "border-green-deep bg-green-deep/5"
                   : "border-sand/30 bg-white hover:border-sand",
                 !available && "opacity-50"
               )}
             >
-              <div className="flex items-center gap-3">
-                <span className="text-xl">{method.icon}</span>
-                <div>
-                  <p className="font-medium text-night">{method.label}</p>
+              <div className="flex min-w-0 items-center gap-3">
+                <span className="shrink-0 text-xl" aria-hidden>{method.icon}</span>
+                <div className="min-w-0">
+                  <p className="truncate font-medium text-night">{method.label}</p>
                   {zone && (
                     <p className="text-xs text-sand">
                       {zone.etaDays[0]}–{zone.etaDays[1]} jours
@@ -70,7 +70,7 @@ export function DeliveryMethodPicker({
                   )}
                 </div>
               </div>
-              <span className="font-semibold text-night">{formatFCFA(fee)}</span>
+              <span className="shrink-0 tabular-nums font-semibold text-night">{formatFCFA(fee)}</span>
             </button>
           );
         })}

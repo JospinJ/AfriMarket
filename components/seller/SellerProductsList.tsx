@@ -16,13 +16,13 @@ export function SellerProductsList() {
   return (
     <div className="space-y-6">
       {store && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-dash-border bg-dash-bg/50 p-4">
-          <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-dash-accent/20 text-dash-accent">
+        <div className="flex min-w-0 flex-wrap items-center justify-between gap-3 rounded-lg border border-dash-border bg-dash-bg/50 p-4">
+          <div className="flex min-w-0 flex-1 items-center gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-dash-accent/20 text-dash-accent">
               <Store className="h-5 w-5" aria-hidden />
             </span>
-            <div>
-              <p className="font-semibold text-night">{store.storeName}</p>
+            <div className="min-w-0">
+              <p className="truncate font-semibold text-night">{store.storeName}</p>
               <Link
                 href={ROUTES.store(store.storeSlug)}
                 className="text-xs text-primary hover:underline"
@@ -61,7 +61,7 @@ export function SellerProductsList() {
                     src={product.images[0] ?? "/images/placeholder.svg"}
                     alt={product.title}
                     fill
-                    className="object-cover"
+                    className="object-contain bg-ivory p-2"
                     sizes="(max-width:768px) 100vw, 33vw"
                     unoptimized={product.images[0]?.startsWith("http")}
                   />

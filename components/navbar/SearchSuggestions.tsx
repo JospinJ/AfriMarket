@@ -15,7 +15,7 @@ import { useSearchHistory } from "@/hooks/useSearchHistory";
 
 const POPULAR_SEARCHES = [
   "Samsung Galaxy A15",
-  "Robe wax premium",
+  "HP Laptop 15 Core i5",
   "Nike Air Max 90",
   "Riz parfumé 25kg",
   "Casque moto DOT",
@@ -206,9 +206,9 @@ export function SearchSuggestions({ query, onSelect, className }: SearchSuggesti
             <li key={seller.id}>
               <Link
                 href={ROUTES.store(seller.storeSlug)}
-                className="flex items-center justify-between rounded-lg px-2 py-2 text-sm text-night hover:bg-surface-light"
+                className="flex min-w-0 items-center justify-between gap-2 rounded-lg px-2 py-2 text-sm text-night hover:bg-surface-light"
               >
-                <span className="font-medium">{seller.storeName}</span>
+                <span className="min-w-0 truncate font-medium">{seller.storeName}</span>
                 <span className="text-xs text-sand">{seller.city}</span>
               </Link>
             </li>

@@ -184,7 +184,6 @@ export function SearchBar({
               compact ? "pr-12" : "pr-28 lg:pr-36",
             )}
             aria-label="Recherche de produits"
-            aria-expanded={focused}
             aria-controls="search-suggestions-panel"
             aria-autocomplete="list"
             autoComplete="off"
@@ -211,12 +210,12 @@ export function SearchBar({
             type="submit"
             className={cn(
               "absolute right-0 top-0 flex h-12 items-center justify-center bg-primary font-bold text-night transition-colors hover:bg-primary-hover lg:h-14",
-              compact ? "w-12" : "min-w-[5.5rem] gap-2 px-4 lg:min-w-[8.5rem] lg:px-6",
+              compact ? "w-12" : "min-w-[3rem] gap-1.5 px-3 sm:min-w-[5.5rem] sm:gap-2 sm:px-4 lg:min-w-[8.5rem] lg:px-6",
             )}
             aria-label="Lancer la recherche"
           >
             <Search size={20} aria-hidden />
-            {!compact && <span className="text-sm lg:text-base">Rechercher</span>}
+            {!compact && <span className="hidden text-sm sm:inline lg:text-base">Rechercher</span>}
           </button>
         </div>
       </form>

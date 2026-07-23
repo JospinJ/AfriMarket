@@ -32,8 +32,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={`${inter.variable} ${sora.variable}`}>
-      <body className="font-sans antialiased">
+    <html lang="fr" className={`${inter.variable} ${sora.variable} overflow-x-clip`}>
+      <body className="max-w-full overflow-x-clip font-sans antialiased">
         <LocaleProvider>
           <NotificationProvider>
             <MotionProvider>

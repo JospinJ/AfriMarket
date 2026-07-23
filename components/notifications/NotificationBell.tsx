@@ -66,7 +66,7 @@ function NotificationBellInner({ className, variant = "navbar" }: NotificationBe
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.96 }}
               transition={{ duration: 0.18 }}
-              className="absolute right-0 top-full z-50 mt-2"
+              className="absolute right-0 top-full z-50 mt-2 max-sm:fixed max-sm:inset-x-4 max-sm:right-4 max-sm:top-16 max-sm:mt-0"
               role="dialog"
               aria-label={t("notifications.title")}
             >
@@ -97,7 +97,7 @@ function NotificationBellInner({ className, variant = "navbar" }: NotificationBe
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.96 }}
             transition={{ duration: 0.18 }}
-            className="absolute right-0 top-full z-50 mt-2"
+            className="absolute right-0 top-full z-50 mt-2 max-sm:fixed max-sm:inset-x-4 max-sm:right-4 max-sm:top-16 max-sm:mt-0"
             role="dialog"
             aria-label={t("notifications.title")}
           >

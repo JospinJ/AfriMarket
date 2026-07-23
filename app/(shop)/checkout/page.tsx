@@ -183,7 +183,7 @@ export default function CheckoutPage() {
                 transition={{ duration: 0.35 }}
               >
                 {step === 1 && (
-                  <section className="rounded-2xl bg-white p-6 shadow-premium-sm">
+                  <section className="rounded-2xl bg-white p-4 shadow-premium-sm sm:p-6">
                     <h2 className="mb-4 font-display font-semibold text-night">
                       Adresse de livraison
                     </h2>
@@ -192,7 +192,7 @@ export default function CheckoutPage() {
                 )}
 
                 {step === 2 && (
-                  <section className="rounded-2xl bg-white p-6 shadow-premium-sm">
+                  <section className="rounded-2xl bg-white p-4 shadow-premium-sm sm:p-6">
                     <h2 className="mb-4 font-display font-semibold text-night">
                       Mode de livraison
                     </h2>
@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                 )}
 
                 {step === 3 && (
-                  <section className="space-y-6 rounded-2xl bg-white p-6 shadow-premium-sm">
+                  <section className="space-y-6 rounded-2xl bg-white p-4 shadow-premium-sm sm:p-6">
                     <div>
                       <h2 className="font-display font-semibold text-night">Paiement</h2>
                       <p className="mt-1 text-sm text-sand">
@@ -256,7 +256,7 @@ export default function CheckoutPage() {
                 )}
 
                 {step === 4 && (
-                  <section className="rounded-2xl bg-white p-6 shadow-premium-sm">
+                  <section className="rounded-2xl bg-white p-4 shadow-premium-sm sm:p-6">
                     <h2 className="mb-4 font-display font-semibold text-night">
                       Vérification finale
                     </h2>

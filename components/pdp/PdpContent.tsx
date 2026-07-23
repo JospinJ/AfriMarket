@@ -62,12 +62,12 @@ export function PdpContent({ product, seller }: PdpContentProps) {
   return (
     <div className="pb-28 md:pb-10">
       <div className="mx-auto max-w-6xl px-4 py-6">
-        <nav className="mb-4 text-sm text-sand" aria-label="Fil d'Ariane">
+        <nav className="mb-4 flex min-w-0 flex-wrap items-center gap-x-2 text-sm text-sand" aria-label="Fil d'Ariane">
           <Link href={ROUTES.home} className="hover:text-primary">
             Accueil
           </Link>
-          <span className="mx-2">/</span>
-          <span className="text-night">{product.title}</span>
+          <span aria-hidden>/</span>
+          <span className="min-w-0 truncate text-night">{product.title}</span>
         </nav>
 
         <TrustStrip variant="checkout" className="mb-6" />

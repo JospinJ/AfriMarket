@@ -51,7 +51,7 @@ export function SellerVideoPreview({
         <p className="mt-2 max-w-xs text-sm text-white/75">
           Présentation du produit par le vendeur — démo courte (mock)
         </p>
-        <p className="mt-4 text-xs text-primary"></p>
+        <p className="mt-4 text-xs text-primary">TODO API: lecteur vidéo vendeur</p>
       </div>
     </div>
   );

@@ -13,18 +13,18 @@ Ouvrir [http://localhost:3000](http://localhost:3000)
 
 ## Routes principales
 
-| Route | Module |
-|-------|--------|
-| `/` | Home |
-| `/products/[slug]` | PDP |
-| `/cart` | Panier |
-| `/checkout` | Checkout (5 étapes) |
-| `/orders/[id]/tracking` | Tracking |
-| `/stores/[slug]` | Boutique vendeur |
-| `/admin`, `/seller`, `/driver`, `/buyer`, `/support` | Dashboards RBAC |
-| `/messages` | Chat |
-| `/legal` | Centre légal |
-| `/kitchen-sink` | Démo composants partagés |
+| Route                                                | Module                   |
+| ------------------------------------------------------| --------------------------|
+| `/`                                                  | Home                     |
+| `/products/[slug]`                                   | PDP                      |
+| `/cart`                                              | Panier                   |
+| `/checkout`                                          | Checkout (5 étapes)      |
+| `/orders/[id]/tracking`                              | Tracking                 |
+| `/stores/[slug]`                                     | Boutique vendeur         |
+| `/admin`, `/seller`, `/driver`, `/buyer`, `/support` | Dashboards RBAC          |
+| `/messages`                                          | Chat                     |
+| `/legal`                                             | Centre légal             |
+| `/kitchen-sink`                                      | Démo composants partagés |
 
 ## Scripts
 

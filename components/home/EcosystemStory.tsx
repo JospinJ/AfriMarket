@@ -83,7 +83,7 @@ export function EcosystemStory() {
         <p className="font-display text-lg italic text-night/80 md:text-xl">
           &ldquo;{BRAND.vision}&rdquo;
         </p>
-        <footer className="mt-3 flex items-center justify-center gap-2 text-sm text-sand">
+        <footer className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-sand">
           <Users className="h-4 w-4 text-primary" aria-hidden />
           <span>AfriMarket Hub — leadership africain numérique</span>
         </footer>
